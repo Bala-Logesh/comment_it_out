@@ -1,0 +1,37 @@
+.App{
+    height: 100vh;
+    width: 100vw;
+    min-width: 250px;
+    padding: 20px;
+    background-color: var(--clr-bg-primary);
+    color: var(--clr-text-primary);
+}
+
+.App.flex{
+    flex-direction: column;
+    gap: 20px;
+}
+
+.App__navbar{
+    width: 100%;
+}
+
+.App__main{
+    flex: 1;
+    width: 100%;
+}
+
+/* Media Queries */
+/* Screen size less than 440px */
+@media screen and (max-width: 440px){
+    .App{
+        padding: 14px;
+    }
+}
+
+/* Screen size less than 320px */
+@media screen and (max-width: 320px){
+    .App{
+        padding: 8px;
+    }
+}

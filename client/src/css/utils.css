@@ -1,0 +1,17 @@
+:root{
+    --clr-bg-primary: #040c10;
+    --clr-bg-secondary: #16202a;
+    --clr-bg-tertiary: #2D3642;
+
+    --clr-text-primary: #fbffff;
+    --clr-text-secondary: #363d47;
+
+    --clr-accent-blue: #19d7c1;
+    --clr-accent-red: #cc0001;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,44 @@
+.Main{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.Main.flex{
+    align-items: stretch;
+    gap: 20px;
+}
+
+/* .Main > *{
+    border: 2px solid white;
+} */
+
+.Main__left{
+    width: 20%;
+    height: max-content;
+}
+
+.Main__center{
+    flex: 1;
+    width: 40px;
+}
+
+.Main__right{
+    width: 30%;
+    height: 60%;
+}
+
+/* Media Queries */
+/* Screen size less than 840px */
+@media screen and (max-width: 840px){
+    .Main__left{
+        width: max-content;
+    }
+}
+
+/* Screen size less than 600px */
+@media screen and (max-width: 600px){
+    .Main__right{
+        display: none;
+    }
+}
