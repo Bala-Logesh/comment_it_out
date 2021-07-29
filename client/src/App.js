@@ -3,8 +3,10 @@ import './css/utils.css'
 import './css/App.css'
 import Navbar from './components/Navbar';
 import Main from './Templates/Main';
+import Menu from './components/Menu';
 import Posts from './components/Posts';
 import UserSuggestions from './Pages/UserSuggestions'
+import Landing from './Pages/Landing';
 
 const App = () => {
 
@@ -15,11 +17,14 @@ const App = () => {
           <Navbar />
         </div>
         <div className='App__main'>
-          <Route exact path='/'>
-            <Main Center={ Posts } Suggestions={ UserSuggestions } />
+          <Route path='/home'>
+            <Main Menu={ Menu } Center={ Posts } Suggestions={ UserSuggestions } />
           </Route>
           <Route path='/suggested'>
-            <Main Center={ UserSuggestions } />
+            <Main Menu={ Menu } Center={ UserSuggestions } />
+          </Route>
+          <Route exact path='/'>
+            <Main Center={ Landing } />
           </Route>
         </div>
       </div>

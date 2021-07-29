@@ -1,0 +1,30 @@
+.Landing{
+    min-height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.Landing.flex{
+    flex-direction: column;
+}
+
+.Landing__main{
+    flex: 1;
+}
+
+.Landing__main.flex{
+    gap: 1ch;
+}
+
+.Landing__main > h1{
+    font-weight: 500;
+}
+
+/* Media Queries */
+/* Screen size less than 540px */
+@media screen and (max-width: 540px){
+    .Landing__main.flex{
+        flex-direction: column;
+        gap: 10px;
+    }
+}
