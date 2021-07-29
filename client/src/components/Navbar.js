@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import avatar from '../images/avatar.jpg'
 import '../css/Navbar.css'
 
 const Navbar = () => {
-    const isAuth = true
+    const isAuth = false
 
     return (
         <div className='Navbar flex'>
@@ -20,8 +20,8 @@ const Navbar = () => {
                     </div>
                 ) : (
                     <div className="Navbar__right flex">
-                        <h3 className='desktop'><Link to='/login' className='text'>Login</Link></h3>
-                        <h3 className='desktop'><Link to='/signup' className='text'>SignUp</Link></h3>
+                        <h3 className='desktop'><NavLink to='/login' activeClassName='text-active' className='text'>Login</NavLink></h3>
+                        <h3 className='desktop'><NavLink to='/signup' activeClassName='text-active' className='text'>SignUp</NavLink></h3>
                         <h3 className='mobile flex'><Link to='/login'><VpnKeyIcon /></Link></h3>
                     </div>
                 )    

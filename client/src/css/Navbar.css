@@ -29,6 +29,7 @@
     border-radius: 10px;
 }
 
+.Navbar__right > .desktop > .text-active, 
 .Navbar__right > .desktop > .text:hover{
     color: var(--clr-accent-blue);
     background-color: var(--clr-bg-tertiary);
