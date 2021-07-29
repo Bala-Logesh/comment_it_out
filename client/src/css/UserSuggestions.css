@@ -9,7 +9,7 @@
 
 .UserSuggestions.flex{
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
 }
 
 .UserSuggestions > h2{
@@ -21,4 +21,12 @@
     border-bottom: 1px solid var(--clr-text-primary);
     background-color: var(--clr-bg-secondary);
     z-index: 2;
+}
+
+/* Media Queries */
+/* Screen size less than 345px */
+@media screen and (max-width: 345px){
+    .UserSuggestions > h2{
+        font-size: 1.2rem;
+    }
 }

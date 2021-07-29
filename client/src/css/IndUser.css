@@ -20,6 +20,12 @@
     border-radius: 50px;
 }
 
+.IndUser > .avatar > img{
+    object-fit: contain;
+    height: 40px;
+    width: 40px;
+}
+
 .IndUser > .username{
     width: 45%;
     overflow: hidden;
@@ -33,7 +39,6 @@
     border-radius: 50px;
     cursor: pointer;
     z-index: 1;
-    flex: 1;
 }
 
 .IndUser > .icons:hover{
@@ -49,5 +54,16 @@
     .IndUser.flex{
         justify-content: space-between;
         gap: 8px;
+    }
+}
+
+/* Screen size less than 345px */
+@media screen and (max-width: 345px){
+    .IndUser > .avatar{
+        margin: 0 6px;
+    }
+
+    .IndUser > .username{
+        display: none;
     }
 }
