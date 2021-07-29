@@ -2,7 +2,7 @@
     height: 100vh;
     width: 100vw;
     min-width: 250px;
-    padding: 20px;
+    padding: 30px 20px;
     background-color: var(--clr-bg-primary);
     color: var(--clr-text-primary);
 }
@@ -19,19 +19,20 @@
 .App__main{
     flex: 1;
     width: 100%;
+    max-height: 90%;
 }
 
 /* Media Queries */
-/* Screen size less than 440px */
-@media screen and (max-width: 440px){
+/* Screen size less than 770px */
+@media screen and (max-width: 770px){
     .App{
-        padding: 14px;
+        padding: 30px 14px;
     }
 }
 
 /* Screen size less than 320px */
 @media screen and (max-width: 320px){
     .App{
-        padding: 8px;
+        padding: 20px 8px;
     }
 }

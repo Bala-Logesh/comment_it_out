@@ -39,6 +39,11 @@
     color: var(--clr-text-primary);
 }
 
+.Menu__item-active{
+    background-color: var(--clr-bg-tertiary);
+    color: var(--clr-accent-blue);
+}
+
 /* Media Queries */
 /* Screen size less than 840px */
 @media screen and (max-width: 840px){

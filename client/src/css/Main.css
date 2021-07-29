@@ -1,31 +1,35 @@
 .Main{
     height: 100%;
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     position: relative;
 }
 
 .Main.flex{
-    align-items: stretch;
+    align-items: flex-start;
     gap: 20px;
 }
-
-/* .Main > *{
-    border: 2px solid white;
-} */
 
 .Main__left{
     width: 20%;
     height: max-content;
+    z-index: 1;
 }
 
 .Main__center{
     flex: 1;
-    width: 40px;
+    min-width: 40%;
+    height: 100%;
+}
+
+.Main__center.flex{
+    align-items: flex-start;
 }
 
 .Main__right{
     width: 30%;
-    height: 60%;
+    height: 410px;
 }
 
 /* Media Queries */
@@ -36,8 +40,8 @@
     }
 }
 
-/* Screen size less than 600px */
-@media screen and (max-width: 600px){
+/* Screen size less than 900px */
+@media screen and (max-width: 900px){
     .Main__right{
         display: none;
     }

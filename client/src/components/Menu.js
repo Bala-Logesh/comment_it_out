@@ -6,14 +6,15 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import SettingsIcon from '@material-ui/icons/Settings';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import './Menu.css'
+import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
+import '../css/Menu.css'
 
 const Menu = () => {
     return (
         <div className="Menu flex">
             <NavLink 
                 activeClassName="Menu__item-active" 
-                to="/home" 
+                to="/info" 
                 className="Menu__item flex" 
                 data-after='User Info'
             >
@@ -22,7 +23,7 @@ const Menu = () => {
             </NavLink>
             <NavLink
                 activeClassName="Menu__item-active"
-                to="/home"
+                to="/posts"
                 className="Menu__item flex"
                 data-after='My Posts'
             >
@@ -31,7 +32,7 @@ const Menu = () => {
             </NavLink>
             <NavLink
                 activeClassName="Menu__item-active"
-                to="/home"
+                to="/create"
                 className="Menu__item flex"
                 data-after='Create Post'
             >
@@ -40,7 +41,7 @@ const Menu = () => {
             </NavLink>
             <NavLink
                 activeClassName="Menu__item-active"
-                to="/home"
+                to="/favourites"
                 className="Menu__item flex"
                 data-after='Favourites'
             >
@@ -49,7 +50,7 @@ const Menu = () => {
             </NavLink>
             <NavLink
                 activeClassName="Menu__item-active"
-                to="/home"
+                to="/following"
                 className="Menu__item flex"
                 data-after='Following'
             >
@@ -58,15 +59,24 @@ const Menu = () => {
             </NavLink>
             <NavLink
                 activeClassName="Menu__item-active"
-                to="/home"
+                to="/settings"
                 className="Menu__item flex"
                 data-after='User Settings'
             >
                 <SettingsIcon />
                 <span>User Settings</span>
             </NavLink>
+            <NavLink
+                activeClassName="Menu__item-active"
+                to="/suggested"
+                className="Menu__item flex"
+                data-after='Suggested Users'
+            >
+                <RecordVoiceOverIcon />
+                <span>Suggested Users</span>
+            </NavLink>
             <Link
-                to="/home"
+                to="/"
                 className="Menu__item flex"
                 data-after='Log Out'
             >

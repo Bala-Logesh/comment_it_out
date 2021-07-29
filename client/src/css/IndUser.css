@@ -1,0 +1,53 @@
+.IndUser{
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 10px;
+}
+
+.IndUser:hover{
+    background-color: var(--clr-bg-tertiary);
+}
+
+.IndUser.flex{
+    justify-content: space-evenly;
+    gap: 16px;
+}
+
+.IndUser > .avatar{
+    height: 40px;
+    width: 40px;
+    background-color: var(--clr-accent-red);
+    border-radius: 50px;
+}
+
+.IndUser > .username{
+    width: 45%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+}
+
+.IndUser > .icons{
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 1;
+    flex: 1;
+}
+
+.IndUser > .icons:hover{
+    background-color: var(--clr-bg-secondary);
+}
+
+/* Media Queries */
+/* Screen size less than 900px */
+@media screen and (max-width: 900px){
+    .IndUser{
+        padding: 14px 10px;
+    }
+    .IndUser.flex{
+        justify-content: space-between;
+        gap: 8px;
+    }
+}

@@ -1,8 +1,10 @@
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './css/utils.css'
 import './css/App.css'
-import Navbar from './components/Navbar/Navbar'
-import Main from './components/Main/Main'
+import Navbar from './components/Navbar';
+import Main from './Templates/Main';
+import Posts from './components/Posts';
+import UserSuggestions from './Pages/UserSuggestions'
 
 const App = () => {
 
@@ -13,7 +15,12 @@ const App = () => {
           <Navbar />
         </div>
         <div className='App__main'>
-          <Main />
+          <Route exact path='/'>
+            <Main Center={ Posts } Suggestions={ UserSuggestions } />
+          </Route>
+          <Route path='/suggested'>
+            <Main Center={ UserSuggestions } />
+          </Route>
         </div>
       </div>
     </Router>

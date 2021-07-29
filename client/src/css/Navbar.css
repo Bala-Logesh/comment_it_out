@@ -17,20 +17,21 @@
     color: var(--clr-accent-blue);
 }
 
-.Navbar__right > .desktop{
+.Navbar__right > .desktop:first-child{
     margin-right: 30px;
 }
 
-.Navbar__right > .search{
-    padding: 4px;
-    height: 35px;
-    width: 35px;
-    background-color: var(--clr-bg-secondary);
-    border-radius: 50px;
+.Navbar__right > .mobile{
+    display: none;
 }
 
-.Navbar__right > .search:hover{
+.Navbar__right > .search,
+.Navbar__right > .mobile{
+    padding: 4px;
+    height: 45px;
+    width: 45px;
     background-color: var(--clr-bg-tertiary);
+    border-radius: 50px;
 }
 
 /* Media Queries */
@@ -38,6 +39,10 @@
 @media screen and (max-width: 768px){
     .Navbar__right > .desktop{
         display: none;
+    }
+
+    .Navbar__right > .mobile{
+        display: flex;
     }
 }
 

@@ -1,0 +1,9 @@
+.Posts{
+    max-height: 100%;
+    overflow-y: scroll;
+}
+
+.Posts.flex{
+    flex-direction: column;
+    justify-content: start;
+}

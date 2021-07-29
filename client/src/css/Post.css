@@ -1,0 +1,15 @@
+.Post{
+    background-color: var(--clr-bg-secondary);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.Post.flex{
+    flex-direction: column;
+    gap: 20px;
+}
+
+.Post > img{
+    height: 200px;
+}
