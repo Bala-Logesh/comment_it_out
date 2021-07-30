@@ -4,7 +4,7 @@ const Main = ({ Menu = null, Center, Suggestions = null }) => {
     return (
         <div className="Main flex">
             {
-                Suggestions && <div className="Main__left">
+                Menu && <div className="Main__left">
                     <Menu />
                 </div>
             }

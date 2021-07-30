@@ -5,12 +5,23 @@ import avatar from '../images/avatar.jpg'
 import '../css/Navbar.css'
 
 const Navbar = () => {
-    const isAuth = false
+    const isAuth = true
 
     return (
         <div className='Navbar flex'>
             <div className="Navbar__left">
-                <h3><Link to='/'>&#47;&#47;Comment_It_Out</Link></h3>
+
+
+                {/* Change this link to the / route */}
+                {/* Change this link to the / route */}
+                {/* Change this link to the / route */}
+                {/* Change this link to the / route */}
+                {/* Change this link to the / route */}
+                {/* Change this link to the / route */}
+                {/* Change this link to the / route */}
+
+
+                <h3><Link to='/home'>&#47;&#47;Comment_It_Out</Link></h3>
             </div>
             {
                 isAuth ? (

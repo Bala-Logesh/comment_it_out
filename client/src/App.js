@@ -4,9 +4,9 @@ import './css/App.css'
 import Navbar from './components/Navbar';
 import Main from './Templates/Main';
 import Menu from './components/Menu';
-import Posts from './components/Posts';
 import UserSuggestions from './Pages/UserSuggestions'
 import Landing from './Pages/Landing';
+import Posts from './Pages/Posts';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Forgot from './Pages/ForgotPwd/Forgot';
@@ -23,18 +23,26 @@ const App = () => {
         </div>
         <div className='App__main'>
           <Switch>
+
+            {/* Home page route */}
             <Route path='/home'>
               <Main Menu={ Menu } Center={ Posts } Suggestions={ UserSuggestions } />
             </Route>
+
+            {/* Suggested users route */}
             <Route path='/suggested'>
               <Main Menu={ Menu } Center={ UserSuggestions } />
             </Route>
+
+            {/* Login and Signup route */}
             <Route path='/login'>
               <Main Center={ Login } />
             </Route>
             <Route path='/signup'>
               <Main Center={ Register } />
             </Route>
+
+            {/* Forgot Password route */}
             <Route path='/forgot'>
               <Main Center={ Forgot } />
             </Route>
@@ -44,6 +52,8 @@ const App = () => {
             <Route path='/forgot2/:id'>
               <Main Center={ Forgot2 } />
             </Route>
+
+            {/* Landing Page route */}
             <Route path='/'>
               <Main Center={ Landing } />
             </Route>

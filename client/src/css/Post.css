@@ -1,15 +1,106 @@
 .Post{
+    width: 100%;
     background-color: var(--clr-bg-secondary);
-    padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
 }
 
 .Post.flex{
     flex-direction: column;
+}
+
+.Post__header{
+    width: 100%;
+    background-color: var(--clr-bg-tertiary);
+    padding: 14px;
+    border-radius: 10px 10px 0 0;
+}
+
+.Post__header.flex{
     gap: 20px;
 }
 
-.Post > img{
-    height: 200px;
+.Post__header > .avatar{
+    height: 40px;
+    width: 40px;
+    background-color: var(--clr-accent-red);
+    border-radius: 50px;
+}
+
+.Post__header > .avatar > img{
+    object-fit: contain;
+    height: 40px;
+    width: 40px;
+}
+
+.Post__header .Post__header-title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+}
+
+.Post__header .Post__header-title.flex{
+    flex-direction: column;
+    gap: 4px;
+    align-items: start;
+}
+
+.Post__main{
+    width: 100%;
+}
+
+.Post__main.flex{
+    flex-direction: column;
+}
+
+.Post__main > p{
+    padding: 14px;
+    border-bottom: 1px solid var(--clr-text-grey);
+}
+
+.Post__main > img{
+    width: 100%;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.Post__icons{
+    padding: 10px 0;
+    width: 100%;
+}
+
+.Post__icons.flex{
+    justify-content: space-evenly;
+}
+
+.Post__icons > .icons{
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.Post__icons > .icons:hover{
+    color: var(--clr-accent-blue);
+    background-color: var(--clr-bg-tertiary);
+}
+
+.Post__icons > .icons:last-child:hover{
+    color: var(--clr-text-primary);
+    background-color: var(--clr-accent-red);
+}
+
+.Post__icons > .icons.flex{
+    gap: 6px;
+}
+
+.Post__icons > .icons.liked{
+    color: var(--clr-accent-blue);
+}
+
+/* Media Queries */
+/* Screen size less than 400px */
+@media screen and (max-width: 400px){
+    .Post__icons > .icons{
+        padding: 10px;
+    }
 }

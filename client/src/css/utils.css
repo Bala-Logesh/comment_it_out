@@ -5,9 +5,10 @@
 
     --clr-text-primary: #fbffff;
     --clr-text-secondary: #363d47;
-
+    
     --clr-accent-blue: #19d7c1;
     --clr-accent-red: #cc0001;
+    --clr-text-grey:#ffffff22;
 }
 
 .flex{
