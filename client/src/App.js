@@ -12,6 +12,9 @@ import Register from './Pages/Register';
 import Forgot from './Pages/ForgotPwd/Forgot';
 import Forgot1 from './Pages/ForgotPwd/Forgot1';
 import Forgot2 from './Pages/ForgotPwd/Forgot2';
+import PostForm from './Pages/PostForm';
+import EditPostForm from './Pages/EditPostForm';
+import UserPosts from './Pages/UserPosts';
 
 const App = () => {
 
@@ -51,6 +54,19 @@ const App = () => {
             </Route>
             <Route path='/forgot2/:id'>
               <Main Center={ Forgot2 } />
+            </Route>
+
+            {/* User related route */}
+            <Route path='/:id/posts'>
+              <Main Menu={ Menu } Center={ UserPosts } />
+            </Route>
+
+            {/* Post related route */}
+            <Route path='/create'>
+              <Main Center={ PostForm } />
+            </Route>
+            <Route path='/editPost/:id'>
+              <Main Center={ EditPostForm } />
             </Route>
 
             {/* Landing Page route */}

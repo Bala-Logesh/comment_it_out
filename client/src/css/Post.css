@@ -3,6 +3,7 @@
     background-color: var(--clr-bg-secondary);
     border-radius: 10px;
     margin-bottom: 20px;
+    max-width: 500px;
 }
 
 .Post.flex{
@@ -43,6 +44,18 @@
     flex-direction: column;
     gap: 4px;
     align-items: start;
+}
+
+.Post__header > .edit{
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.Post__header > .edit:hover{
+    background-color: var(--clr-bg-secondary);
 }
 
 .Post__main{

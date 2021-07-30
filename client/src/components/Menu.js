@@ -23,7 +23,7 @@ const Menu = () => {
             </NavLink>
             <NavLink
                 activeClassName="Menu__item-active"
-                to="/posts"
+                to="/123/posts"
                 className="Menu__item flex"
                 data-after='My Posts'
             >

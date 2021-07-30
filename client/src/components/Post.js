@@ -1,5 +1,5 @@
 import '../css/Post.css'
-import img from '../images/img4.png'
+import img from '../images/img1.png'
 import avatar from '../images/avatar.jpg'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
@@ -7,6 +7,8 @@ import CommentIcon from '@material-ui/icons/Comment';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import { Link } from 'react-router-dom';
 
 const Post = () => {
     const visible = false
@@ -20,6 +22,7 @@ const Post = () => {
                     <h4 className='username'>BalaLogeshsadfsdfadfsfBalaLogeshsadfsdfadfsf</h4>
                     <h6 className='username'>BalaLogeshsadfsdfadfsfBalaLogeshsadfsdfadfsf</h6>
                 </div>
+                <Link to='/editPost/123' className='edit flex'><EditIcon /></Link>
             </div>
             <div className="Post__main flex">
                 <img src={img} alt='Post'></img>

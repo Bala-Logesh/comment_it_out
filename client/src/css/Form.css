@@ -25,7 +25,9 @@
 
 .form__form > .error,
 .form__form > input,
-.form__form > button{
+.form__form > textarea,
+.form__form > button,
+.form__form button{
     width: 100%;
     padding: 14px 20px;
     border-radius: 10px;
@@ -40,9 +42,52 @@
 }
 
 .form__form > input:focus,
-.form__form > button:hover{
+.form__form > textarea:focus,
+.form__form > button:hover,
+.form__form button:hover{
     color: var(--clr-accent-blue);
     background-color: var(--clr-bg-tertiary);
+}
+
+.form__radio{
+    width: 100%;
+    padding: 14px 20px;
+    background-color: var(--clr-bg-secondary);
+    border-radius: 10px;
+}
+
+.form__radio.flex{
+    justify-content: space-evenly;
+}
+
+.form__radio .flex{
+    gap: 4px;
+}
+
+.form__radio .flex input{
+    cursor: pointer;
+    padding: 4px;
+}
+
+.form__buttons{
+    width: 100%;
+}
+
+.form__buttons.flex{
+    gap: 10px;
+}
+
+.form__buttons > button,
+.form__buttons > a{
+    flex: 1;
+}
+
+.form__buttons button:last-child{
+    background-color: var(--clr-accent-red);
+}
+
+.form__buttons button:last-child:hover{
+    color: var(--clr-text-pri);
 }
 
 .form__links{
@@ -80,6 +125,14 @@
 @media screen and (max-width: 500px){
     .form__container{
         width: 90%;
+    }
+}
+
+/* Screen size less than 410px */
+@media screen and (max-width: 410px){
+    .form__radio.flex{
+        flex-direction: column;
+        gap: 6px;
     }
 }
 
