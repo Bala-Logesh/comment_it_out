@@ -40,14 +40,10 @@ const PostForm = () => {
                     <div className="form__radio flex">
                         <h4>Choose visibility</h4>
                         <div className="flex">
-                            <input type="radio" id="public" name="status" value="public" checked={ post.status === 'public' } onChange={ handleInput }/>
-                            <label htmlFor="public">Public</label>
-                            <br />
+                            <label htmlFor="public"><input type="radio" id="public" name="status" value="public" checked={ post.status === 'public' } onChange={ handleInput }/>Public</label>
                         </div>
                         <div className="flex">
-                            <input type="radio" id="private" name="status" value="private" checked={ post.status === 'private' } onChange={ handleInput }/>
-                            <label htmlFor="private">Private</label>
-                            <br />
+                            <label htmlFor="private"><input type="radio" id="private" name="status" value="private" checked={ post.status === 'private' } onChange={ handleInput }/>Private</label>
                         </div>
                     </div>
                     <br />

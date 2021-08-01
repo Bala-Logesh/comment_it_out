@@ -27,6 +27,7 @@ const Post = () => {
             <div className="Post__main flex">
                 <img src={img} alt='Post'></img>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique voluptates possimus provident sed aliquam porro</p>
+                <p className="hastag">#Hello #World #FavoriteBorderOutlinedIcon</p>
             </div>
             <div className="Post__icons flex">
                 <div className="icons flex liked">

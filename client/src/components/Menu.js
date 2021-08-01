@@ -14,7 +14,7 @@ const Menu = () => {
         <div className="Menu flex">
             <NavLink 
                 activeClassName="Menu__item-active" 
-                to="/info" 
+                to="/123/info" 
                 className="Menu__item flex" 
                 data-after='User Info'
             >

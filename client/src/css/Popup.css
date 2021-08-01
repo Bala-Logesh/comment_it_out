@@ -1,0 +1,56 @@
+.Popup{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+}
+
+.Popup__container{
+    width: 40%;
+    height: 40%;
+    background-color: #e0e0e0;
+    color: var(--clr-bg-secondary);
+    border-radius: 10px;
+}
+
+.hide-popup{
+    display: none;
+}
+
+/* Media Queries */
+/* Screen size less than 1200px */
+@media screen and (max-width: 1200px){
+    .Popup__container{
+        width: 50%;
+    }
+}
+
+/* Screen size less than 900px */
+@media screen and (max-width: 900px){
+    .Popup__container{
+        width: 60%;
+    }
+}
+
+/* Screen size less than 700px */
+@media screen and (max-width: 700px){
+    .Popup__container{
+        width: 70%;
+    }
+}
+
+/* Screen size less than 475px */
+@media screen and (max-width: 475px){
+    .Popup__container{
+        width: 85%;
+    }
+}
+
+/* Screen size less than 300px */
+@media screen and (max-width: 300px){
+    .Popup__container{
+        width: 95%;
+    }
+}

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Link } from 'react-router-dom'
+import ImageIcon from '@material-ui/icons/Image';
 
 const Register = () => {
     const error = null
@@ -41,6 +42,11 @@ const Register = () => {
                     <input type="email" name='email' placeholder='Enter the email' value={user.email} onChange={handleInput} />
                     <input type="password" name='password' placeholder='Enter the password' value={user.password} onChange={handleInput} />
                     <input type="password" name='confirmPassword' placeholder='Reenter the password' value={user.confirmPassword} onChange={handleInput} />
+                    <label class="form__file flex">
+                        <input type="file"/>
+                        Upload a Profile Picture
+                        <ImageIcon />
+                    </label>
                     <button className='btn' type="submit">SignUp</button>
                 </form>
                 <div className="form__links">

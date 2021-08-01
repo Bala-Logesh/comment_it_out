@@ -18,25 +18,28 @@ import UserPosts from './Pages/UserPosts';
 import EditUser from './Pages/EditUser';
 import FavPosts from './Pages/FavPosts';
 import Following from './Pages/Following';
+import UserDetails from './Pages/UserDetails';
+import Search from './Pages/Search';
+import Popup from './components/Popup';
 
 const App = () => {
   return (
     <Router>
+      <Popup />
       <div className='App flex'>
         <div className='App__navbar'>
           <Navbar />
         </div>
         <div className='App__main'>
           <Switch>
+            {/* Landing Page route */}
+            <Route exact path='/'>
+              <Main Center={ Landing } />
+            </Route>
 
             {/* Home page route */}
             <Route path='/home'>
               <Main Menu={ Menu } Center={ Posts } Suggestions={ UserSuggestions } />
-            </Route>
-
-            {/* Suggested users route */}
-            <Route path='/suggested'>
-              <Main Menu={ Menu } Center={ UserSuggestions } />
             </Route>
 
             {/* Login and Signup route */}
@@ -59,6 +62,9 @@ const App = () => {
             </Route>
 
             {/* User related route */}
+            <Route path='/:id/info'>
+              <Main Menu={ Menu } Center={ UserDetails } />
+            </Route>
             <Route path='/:id/posts'>
               <Main Menu={ Menu } Center={ UserPosts } />
             </Route>
@@ -72,6 +78,11 @@ const App = () => {
               <Main Center={ EditUser } />
             </Route>
 
+            {/* Suggested users route */}
+            <Route path='/suggested'>
+              <Main Menu={ Menu } Center={ UserSuggestions } />
+            </Route>
+
             {/* Post related route */}
             <Route path='/create'>
               <Main Center={ PostForm } />
@@ -79,11 +90,11 @@ const App = () => {
             <Route path='/editPost/:id'>
               <Main Center={ EditPostForm } />
             </Route>
-
-            {/* Landing Page route */}
-            <Route path='/'>
-              <Main Center={ Landing } />
+            <Route path='/search'>
+              <Main Menu={ Menu } Center={ Search } />
             </Route>
+
+            {/* Error Routes */}
           </Switch>
         </div>
       </div>

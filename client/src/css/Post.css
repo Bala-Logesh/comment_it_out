@@ -68,7 +68,13 @@
 
 .Post__main > p{
     padding: 14px;
+}
+
+.Post__main > p:last-child{
+    width: 100%;
     border-bottom: 1px solid var(--clr-text-grey);
+    font-style: italic;
+    color: var(--clr-accent-blue);
 }
 
 .Post__main > img{
