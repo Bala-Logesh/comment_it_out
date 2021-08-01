@@ -5,52 +5,74 @@
     position: absolute;
     inset: 0;
     z-index: 10;
+    text-align: center;
 }
 
 .Popup__container{
-    width: 40%;
-    height: 40%;
-    background-color: #e0e0e0;
+    width: max-content;
+    height: max-content;
+    background-color: var(--clr-bg-secondary);
     color: var(--clr-bg-secondary);
     border-radius: 10px;
+    padding: 40px;
+    z-index: 11;
+}
+
+.Popup__container.flex{
+    flex-direction: column;
+    gap: 20px;
+}
+
+.Popup__container > h2{
+    font-weight: 400;
+    color: var(--clr-text-primary);
 }
 
 .hide-popup{
     display: none;
 }
 
+.Popup__buttons{
+    width: 80%;
+}
+
+.Popup__buttons.flex{
+    gap: 10px;
+}
+
+.Popup__buttons button{
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 10px;
+    color: var(--clr-text-primary);
+    font-size: 1.1rem;
+}
+
+.Popup__buttons > button,
+.Popup__buttons > a{
+    flex: 1;
+    width: 100%;
+}
+
+.Popup__buttons > button{
+    border: 2px solid var(--clr-bg-tertiary);
+}
+
+.Popup__buttons > button:hover{
+    color: var(--clr-accent-blue);
+    background-color: var(--clr-bg-tertiary);
+}
+
+.Popup__buttons > a:last-child > button{
+    color: var(--clr-text-primary);
+    background-color: var(--clr-accent-red);
+}
+
 /* Media Queries */
-/* Screen size less than 1200px */
-@media screen and (max-width: 1200px){
-    .Popup__container{
-        width: 50%;
-    }
-}
-
-/* Screen size less than 900px */
-@media screen and (max-width: 900px){
-    .Popup__container{
-        width: 60%;
-    }
-}
-
-/* Screen size less than 700px */
-@media screen and (max-width: 700px){
-    .Popup__container{
-        width: 70%;
-    }
-}
 
 /* Screen size less than 475px */
 @media screen and (max-width: 475px){
-    .Popup__container{
-        width: 85%;
-    }
-}
-
-/* Screen size less than 300px */
-@media screen and (max-width: 300px){
-    .Popup__container{
-        width: 95%;
+    .Popup__buttons.flex{
+        flex-direction: column;
     }
 }
