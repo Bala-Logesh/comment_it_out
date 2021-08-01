@@ -1,0 +1,13 @@
+.FavPosts{
+    max-height: 100%;
+    overflow-y: scroll;
+}
+
+.FavPosts.flex{
+    flex-direction: column;
+    justify-content: start;
+}
+
+.FavPosts__posts{
+    max-width: 100%;
+}

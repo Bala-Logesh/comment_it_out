@@ -39,10 +39,15 @@
     border-radius: 50px;
     cursor: pointer;
     z-index: 1;
+    background-color: var(--clr-bg-tertiary);
 }
 
 .IndUser > .icons:hover{
     background-color: var(--clr-bg-secondary);
+}
+
+.IndUser > .danger{
+    color: var(--clr-accent-red);
 }
 
 /* Media Queries */

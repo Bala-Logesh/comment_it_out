@@ -23,6 +23,10 @@
     gap: 20px;
 }
 
+.form__form > input{
+    position: relative;
+}
+
 .form__form > .error,
 .form__form > input,
 .form__form > textarea,

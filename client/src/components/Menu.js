@@ -41,7 +41,7 @@ const Menu = () => {
             </NavLink>
             <NavLink
                 activeClassName="Menu__item-active"
-                to="/favourites"
+                to="/123/favposts"
                 className="Menu__item flex"
                 data-after='Favourites'
             >
@@ -50,7 +50,7 @@ const Menu = () => {
             </NavLink>
             <NavLink
                 activeClassName="Menu__item-active"
-                to="/following"
+                to="/123/following"
                 className="Menu__item flex"
                 data-after='Following'
             >
@@ -59,7 +59,7 @@ const Menu = () => {
             </NavLink>
             <NavLink
                 activeClassName="Menu__item-active"
-                to="/settings"
+                to="/123/settings"
                 className="Menu__item flex"
                 data-after='User Settings'
             >

@@ -15,9 +15,11 @@ import Forgot2 from './Pages/ForgotPwd/Forgot2';
 import PostForm from './Pages/PostForm';
 import EditPostForm from './Pages/EditPostForm';
 import UserPosts from './Pages/UserPosts';
+import EditUser from './Pages/EditUser';
+import FavPosts from './Pages/FavPosts';
+import Following from './Pages/Following';
 
 const App = () => {
-
   return (
     <Router>
       <div className='App flex'>
@@ -59,6 +61,15 @@ const App = () => {
             {/* User related route */}
             <Route path='/:id/posts'>
               <Main Menu={ Menu } Center={ UserPosts } />
+            </Route>
+            <Route path='/:id/favposts'>
+              <Main Menu={ Menu } Center={ FavPosts } />
+            </Route>
+            <Route path='/:id/following'>
+              <Main Menu={ Menu } Center={ Following } />
+            </Route>
+            <Route path='/:id/settings'>
+              <Main Center={ EditUser } />
             </Route>
 
             {/* Post related route */}
