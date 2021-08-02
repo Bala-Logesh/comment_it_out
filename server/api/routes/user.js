@@ -3,6 +3,7 @@ import {
   deleteUser,
   fetchAllUsers,
   fetchUserById,
+  followUser,
   updateUser,
 } from '../../controllers/user.controller.js'
 
@@ -27,5 +28,10 @@ router.patch('/:id', updateUser)
 // @description Delete an existing user
 // @access Public
 router.delete('/:id', deleteUser)
+
+// @route PATCH api/user/:id/following
+// @description Follow or Unfollow an user
+// @access Public
+router.patch('/:id/following', followUser)
 
 export default router

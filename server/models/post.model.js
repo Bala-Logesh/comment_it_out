@@ -10,9 +10,18 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  subtitle: {
+    type: String,
+    required: true,
+  },
   body: {
     type: String,
     required: true,
+  },
+  status: {
+    type: String,
+    default: 'public',
+    enum: ['public', 'private']
   },
   tags: {
     type: [String],
@@ -20,7 +29,7 @@ const postSchema = new mongoose.Schema({
   comments: {
     type: [
       {
-        user: {
+        commentor: {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'User',
           required: true,

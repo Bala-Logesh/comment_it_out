@@ -6,9 +6,23 @@ export const fetchAllUsers = async (req, res) => {
   try {
     const users = await User.find()
 
-    res.status(200).json({ data: users })
+    // Success response
+    res.status(200).json({
+      status: 'ok',
+      data: {
+        users
+      },
+      error: null
+    })
   } catch (error) {
     console.log(error)
+
+    // Error response
+    res.status(500).json({
+      status: "error",
+      data: null,
+      error: "Internal Server Error" 
+    })
   }
 }
 
@@ -18,9 +32,23 @@ export const fetchUserById = async (req, res) => {
   try {
     const user = await User.findById(_id)
 
-    res.status(200).json({ data: user })
+    // Success response
+    res.status(200).json({
+      status: 'ok',
+      data: {
+        user
+      },
+      error: null
+    })
   } catch (error) {
     console.log(error)
+
+    // Error response
+    res.status(500).json({
+      status: "error",
+      data: null,
+      error: "Internal Server Error" 
+    })
   }
 }
 
@@ -29,7 +57,14 @@ export const updateUser = async (req, res) => {
   const { id: _id } = req.params
   try {
     const user = await User.findById(_id)
-    if (!user) res.status(404).send('User not found')
+    
+    // Error response
+    if (!user)
+      return res.status(404).json({
+        status: "error",
+        data: null,
+        error: "User not found" 
+      })
 
     if (req.body.password) {
       const salt = await bcrypt.genSalt(10)
@@ -37,10 +72,25 @@ export const updateUser = async (req, res) => {
       req.body.password = hashedPwd
     }
 
-    const newUser = await User.findOneAndUpdate(_id, req.body, { new: true })
-    res.status(200).json({ data: newUser })
+    const newUser = await User.findOneAndUpdate({ _id }, req.body, { new: true })
+    
+    // Success response
+    res.status(200).json({
+      status: 'ok',
+      data: {
+        newUser
+      },
+      error: null
+    })
   } catch (error) {
     console.log(error)
+
+    // Error response
+    res.status(500).json({
+      status: "error",
+      data: null,
+      error: "Internal Server Error" 
+    })
   }
 }
 
@@ -49,11 +99,78 @@ export const deleteUser = async (req, res) => {
   const { id: _id } = req.params
   try {
     const user = await User.findById(_id)
-    if (!user) res.status(404).send('User not found')
+
+    // Error response
+    if (!user)
+      return res.status(404).json({
+        status: "error",
+        data: null,
+        error: "User not found" 
+      })
 
     const newUser = await User.findOneAndDelete({ _id })
-    res.status(200).json({ data: 'User deleted' })
+    
+    // Success response
+    res.status(200).json({
+      status: 'ok',
+      data: {
+        data: 'User deleted'
+      },
+      error: null
+    })
   } catch (error) {
     console.log(error)
+
+    // Error response
+    res.status(500).json({
+      status: "error",
+      data: null,
+      error: "Internal Server Error" 
+    })
+  }
+}
+
+// Following or unfollowing an existing user
+export const followUser = async (req, res) => {
+  const { id: _id } = req.params
+  const { followId } = req.body
+
+  try {
+    const user = await User.findById(_id)
+    
+    // Error response
+    if (!user)
+      return res.status(404).json({
+        status: "error",
+        data: null,
+        error: "User not found" 
+      })
+
+    const hasFollowedUser = user.following.includes(followId)
+    if (hasFollowedUser) {
+      user.following = user.following.filter(user => String(user) !== followId)
+    } else {
+      user.following.push(followId)
+    }
+
+    const newUser = await User.findOneAndUpdate({ _id }, { following: user.following }, { new: true })
+    
+    // Success response
+    res.status(200).json({
+      status: 'ok',
+      data: {
+        data: 'Follow/Unfollow operation successful'
+      },
+      error: null
+    })
+  } catch (error) {
+    console.log(error)
+
+    // Error response
+    res.status(500).json({
+      status: "error",
+      data: null,
+      error: "Internal Server Error" 
+    })
   }
 }

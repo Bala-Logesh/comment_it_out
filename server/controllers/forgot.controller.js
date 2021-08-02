@@ -7,7 +7,13 @@ export const genOTP = async (req, res) => {
     const { email } = req.params
     const user = await User.findOne({ email })
 
-    if (!user) return res.status(400).send('User with the email does not exist')
+    // Error response
+    if (!user)
+      return res.status(400).json({
+        status: "error",
+        data: null,
+        error: "User with the email or username does not exist" 
+      })
 
     const newOTP = String(Math.floor(100000 + Math.random() * 900000))
 
@@ -17,13 +23,23 @@ export const genOTP = async (req, res) => {
       { new: true }
     )
 
+    // Success response
     res.status(201).json({
+      status: 'ok',
       data: {
-        newOTP,
+        newOTP
       },
+      error: null
     })
   } catch (error) {
     console.log(error)
+
+    // Error response
+    res.status(500).json({
+      status: "error",
+      data: null,
+      error: "Internal Server Error" 
+    })
   }
 }
 
@@ -33,15 +49,42 @@ export const verifyOTP = async (req, res) => {
     const { email, OTP } = req.params
     const user = await User.findOne({ email })
 
-    if (!user) return res.status(400).send('User with the email does not exist')
+    // Error response
+    if (!user)
+      return res.status(400).json({
+        status: "error",
+        data: null,
+        error: "User with the email does not exist" 
+      })
 
     if (user.OTP === OTP) {
-      res.status(200).send({ status: 'verified' })
+
+      // Success response
+      res.status(200).json({
+        status: 'ok',
+        data: {
+          data: 'verified'
+        },
+        error: null
+      })
     } else {
-      res.status(403).send({ status: 'Invalid OTP' })
+
+      // Error response
+      res.status(403).json({
+        status: "error",
+        data: null,
+        error: "Invalid OTP" 
+      })
     }
   } catch (error) {
     console.log(error)
+
+    // Error response
+    res.status(500).json({
+      status: "error",
+      data: null,
+      error: "Internal Server Error" 
+    })
   }
 }
 
@@ -53,7 +96,13 @@ export const changePassword = async (req, res) => {
 
     const user = await User.findOne({ email })
 
-    if (!user) return res.status(400).send('User with the email does not exist')
+    // Error response
+    if (!user)
+      return res.status(400).json({
+        status: "error",
+        data: null,
+        error: "User with the email does not exist" 
+      })
 
     const salt = await bcrypt.genSalt(10)
     const hashedPwd = await bcrypt.hash(password, salt)
@@ -63,13 +112,23 @@ export const changePassword = async (req, res) => {
       { password: hashedPwd },
       { new: true }
     )
-
+    
+    // Success response
     res.status(201).json({
+      status: 'ok',
       data: {
-        resUser,
+        resUser
       },
+      error: null
     })
   } catch (error) {
     console.log(error)
+
+    // Error response
+    res.status(500).json({
+      status: "error",
+      data: null,
+      error: "Internal Server Error" 
+    })
   }
 }

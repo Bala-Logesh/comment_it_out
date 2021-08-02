@@ -7,8 +7,22 @@ export const registerUser = async (req, res) => {
   try {
     const reqUser = req.body
 
-    const user = await User.findOne({ email: reqUser.email })
-    if (user) return res.status(400).send('User with the email already exists')
+    let user = await User.findOne({ email: reqUser.email })
+
+    // Error response
+    if (user) return res.status(400).json({
+      status: "error",
+      data: null,
+      error: "User with the email already exists" 
+    })
+
+    // Error response
+    user = await User.findOne({ username: reqUser.username })
+    if (user) return res.status(400).json({
+      status: "error",
+      data: null,
+      error: "Username is already taken" 
+    })
 
     const salt = await bcrypt.genSalt(10)
     const hashedPwd = await bcrypt.hash(reqUser.password, salt)
@@ -21,14 +35,24 @@ export const registerUser = async (req, res) => {
       expiresIn: '1h',
     })
 
+    // Success response
     res.status(201).json({
+      status: 'ok',
       data: {
         resUser,
-        token,
+        token
       },
+      error: null
     })
   } catch (error) {
     console.log(error)
+
+    // Error response
+    res.status(500).json({
+      status: "error",
+      data: null,
+      error: "Internal Server Error" 
+    })
   }
 }
 
@@ -40,26 +64,46 @@ export const loginUser = async (req, res) => {
     const user = await User.findOne({
       $or: [{ email: reqUser.email }, { username: reqUser.username }],
     })
+
+    // Error response
     if (!user)
-      return res
-        .status(400)
-        .send('User with the email or username does not exist')
+      return res.status(400).json({
+        status: "error",
+        data: null,
+        error: "User with the email or username does not exist" 
+      })
 
     const passwordsMatch = await bcrypt.compare(reqUser.password, user.password)
 
-    if (!passwordsMatch) return res.status(403).send('Invalid Credentials')
+    // Error response
+    if (!passwordsMatch)
+      return res.status(403).json({
+        status: "error",
+        data: null,
+        error: "Invalid Credentials" 
+      })
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: '1h',
     })
 
+    // Success response
     res.status(201).json({
+      status: 'ok',
       data: {
         user,
-        token,
+        token
       },
+      error: null
     })
   } catch (error) {
     console.log(error)
+
+    // Error response
+    res.status(500).json({
+      status: "error",
+      data: null,
+      error: "Internal Server Error" 
+    })
   }
 }
