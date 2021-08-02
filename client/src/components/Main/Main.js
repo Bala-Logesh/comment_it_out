@@ -1,4 +1,4 @@
-import '../css/Main.css'
+import './Main.css'
 
 const Main = ({ Menu = null, Center, Suggestions = null }) => {
     return (

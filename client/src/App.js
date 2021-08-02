@@ -1,26 +1,33 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
 import './css/utils.css'
 import './css/App.css'
-import Navbar from './components/Navbar';
-import Main from './Templates/Main';
-import Menu from './components/Menu';
-import UserSuggestions from './Pages/UserSuggestions'
-import Landing from './Pages/Landing';
-import Posts from './Pages/Posts';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-import Forgot from './Pages/ForgotPwd/Forgot';
-import Forgot1 from './Pages/ForgotPwd/Forgot1';
-import Forgot2 from './Pages/ForgotPwd/Forgot2';
-import PostForm from './Pages/PostForm';
-import EditPostForm from './Pages/EditPostForm';
-import UserPosts from './Pages/UserPosts';
-import EditUser from './Pages/EditUser';
-import FavPosts from './Pages/FavPosts';
-import Following from './Pages/Following';
-import UserDetails from './Pages/UserDetails';
-import Search from './Pages/Search';
-import Popup from './components/Popup';
+
+import Main from './components/Main/Main'
+
+import Popup from './components/Popup/Popup'
+import Menu from './components/Menu/Menu'
+import Navbar from './components/Navbar/Navbar'
+
+import Landing from './components/Landing/Landing'
+import UserSuggestions from './components/UserSuggestions/UserSuggestions'
+import Posts from './components/Posts_group/Posts/Posts'
+
+import Login from './components/Forms/Login'
+import Register from './components/Forms/Register'
+import Forgot from './components/Forms/ForgotPwd/Forgot'
+import Forgot1 from './components/Forms/ForgotPwd/Forgot1'
+import Forgot2 from './components/Forms/ForgotPwd/Forgot2'
+
+import UserDetails from './components/Forms/UserDetails'
+import UserPosts from './components/Posts_group/UserPosts/UserPosts'
+import FavPosts from './components/Users_group/FavPosts/FavPosts'
+import Following from './components/Users_group/Following/Following'
+import EditUser from './components/Forms/EditUser'
+
+import PostForm from './components/Forms/PostForm'
+import EditPostForm from './components/Forms/EditPostForm'
+import Search from './components/Posts_group/Search/Search'
 
 const App = () => {
   return (

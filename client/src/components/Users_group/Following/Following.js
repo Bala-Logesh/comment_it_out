@@ -1,5 +1,5 @@
-import IndUser from "../components/IndUser"
-import '../css/Following.css'
+import IndUser from "../IndUser/IndUser"
+import './Following.css'
 
 const Following = () => {
     const visibility = 'followers'

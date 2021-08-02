@@ -1,8 +1,8 @@
 import { Link, NavLink } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import avatar from '../images/avatar.jpg'
-import '../css/Navbar.css'
+import avatar from '../../images/avatar.jpg'
+import './Navbar.css'
 
 const Navbar = () => {
     const isAuth = true

@@ -1,6 +1,7 @@
-import '../css/Post.css'
-import img from '../images/img1.png'
-import avatar from '../images/avatar.jpg'
+import { Link } from 'react-router-dom';
+import './Post.css'
+import img from '../../../images/img.jpg'
+import avatar from '../../../images/avatar.jpg'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import CommentIcon from '@material-ui/icons/Comment';
@@ -8,7 +9,6 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import { Link } from 'react-router-dom';
 
 const Post = () => {
     const visible = false

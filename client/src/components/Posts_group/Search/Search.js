@@ -1,6 +1,6 @@
-import Posts from './Posts'
-import '../css/Search.css'
 import { useState } from 'react'
+import Posts from '../Posts/Posts'
+import './Search.css'
 
 const Search = () => {
     const [tags, setTags] = useState('')

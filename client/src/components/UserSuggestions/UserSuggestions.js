@@ -1,5 +1,5 @@
-import IndUser from "../components/IndUser"
-import '../css/UserSuggestions.css'
+import IndUser from '../Users_group/IndUser/IndUser'
+import './UserSuggestions.css'
 
 const UserSuggestions = () => {
     return (

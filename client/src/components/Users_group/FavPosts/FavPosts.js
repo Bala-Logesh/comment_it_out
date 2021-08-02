@@ -1,5 +1,5 @@
-import Posts from './Posts'
-import '../css/FavPosts.css'
+import Posts from '../../Posts_group/Posts/Posts'
+import './FavPosts.css'
 
 const FavPosts = () => {
     return (

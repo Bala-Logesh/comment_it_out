@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../../css/Form.css'
+import '../Form.css'
 
 const Forgot = () => {
     const error = null

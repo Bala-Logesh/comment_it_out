@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import avatar from '../images/img.jpg'
-import '../css/Form.css'
+import avatar from '../../images/avatar.jpg'
+import './Form.css'
 
 const UserDetails = () => {
     const user = {
@@ -8,14 +8,15 @@ const UserDetails = () => {
         email: 'bala@gmail.com',
         password: '',
         confirmPassword: '',
-        displayName: 'BL'
+        displayName: 'BL',
+        selectedFile: avatar
     }
 
     return (
         <div className='form flex'>
             <div className="form__container flex">
                 <h2>User details</h2>
-                <img src={ avatar } alt='Avatar' />
+                <img src={ user.selectedFile } alt='Avatar' />
                 <form className='form__form flex' autoComplete='off'>
                     <div className="form__labels flex">
                         <label htmlFor="username">Username</label>

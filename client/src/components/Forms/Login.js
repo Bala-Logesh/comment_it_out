@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link } from 'react-router-dom'
-import '../css/Form.css'
+import './Form.css'
 
 const Login = () => {
     const error = null

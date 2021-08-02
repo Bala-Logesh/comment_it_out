@@ -1,8 +1,8 @@
 import LaunchIcon from '@material-ui/icons/Launch';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import PersonAddDisabledIcon from '@material-ui/icons/PersonAddDisabled';
-import avatar from '../images/avatar.jpg'
-import '../css/IndUser.css'
+import avatar from '../../../images/avatar.jpg'
+import './IndUser.css'
 
 const IndUser = () => {
     const liked = true

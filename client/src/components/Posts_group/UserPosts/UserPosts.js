@@ -1,5 +1,5 @@
-import Posts from './Posts'
-import '../css/UserPosts.css'
+import Posts from '../Posts/Posts'
+import './UserPosts.css'
 
 const UserPosts = () => {
     const visibility = 'public'

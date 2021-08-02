@@ -7,7 +7,7 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import SettingsIcon from '@material-ui/icons/Settings';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
-import '../css/Menu.css'
+import './Menu.css'
 
 const Menu = () => {
     return (
