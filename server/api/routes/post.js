@@ -10,53 +10,54 @@ import {
   updateComment,
   updatePost,
 } from '../../controllers/post.controller.js'
+import auth from '../../middlewares/auth.js'
 
 const router = express.Router()
 
 // @route GET api/post
 // @description Get all the posts
-// @access Public
-router.get('/', fetchAllPosts)
+// @access Protected
+router.get('/', auth, fetchAllPosts)
 
 // @route GET api/post/:id
 // @description Get the post with ID
-// @access Public
-router.get('/:id', fetchPostById)
+// @access Protected
+router.get('/:id', auth, fetchPostById)
 
 // @route POST api/post
 // @description Create a new post
-// @access Public
-router.post('/', createPost)
+// @access Protected
+router.post('/', auth, createPost)
 
 // @route PATCH api/post/:id
 // @description Edit an existing post
-// @access Public
-router.patch('/:id', updatePost)
+// @access Protected
+router.patch('/:id', auth, updatePost)
 
 // @route DELETE api/post/:id
 // @description Delete an existing post
-// @access Public
-router.delete('/:id', deletePost)
+// @access Protected
+router.delete('/:id', auth, deletePost)
 
 // @route POST api/post/:id/comment
 // @description Create a comment on the post with ID
-// @access Public
-router.post('/:id/comment', createComment)
+// @access Protected
+router.post('/:id/comment', auth, createComment)
 
 // @route PATCH api/post/:id/comment
 // @description Update a comment on the post with ID
-// @access Public
-router.patch('/:id/comment', updateComment)
+// @access Protected
+router.patch('/:id/comment', auth, updateComment)
 
 // @route DELETE api/post/:id/comment
 // @description Delete a comment on the post with ID
-// @access Public
-router.delete('/:id/comment', deleteComment)
+// @access Protected
+router.delete('/:id/comment', auth, deleteComment)
 
 // @route PATCH api/post/:id/like
 // @description Like or Dislike the post with ID
-// @access Public
-router.patch('/:id/like', likePost)
+// @access Protected
+router.patch('/:id/like', auth, likePost)
 
 export default router
 
