@@ -26,7 +26,7 @@ const EditPostForm = () => {
     return (
         <div className='form flex'>
             <div className="form__container flex">
-                <h2>Create a new post</h2>
+                <h2>Edit the Post</h2>
                 <form onSubmit={ handleSubmit } className='form__form flex' autoComplete='off'>
                     {error && <div className="error">{ error }</div> }
                     <input type="text" name='title' placeholder='Enter the title' value={post.title} onChange={handleInput} />
@@ -35,14 +35,10 @@ const EditPostForm = () => {
                     <div className="form__radio flex">
                         <h4>Choose visibility</h4>
                         <div className="flex">
-                            <input type="radio" id="public" name="status" value="public" checked={ post.status === 'public' } onChange={ handleInput }/>
-                            <label htmlFor="public">Public</label>
-                            <br />
+                            <label htmlFor="public"><input type="radio" id="public" name="status" value="public" checked={ post.status === 'public' } onChange={ handleInput }/>Public</label>
                         </div>
                         <div className="flex">
-                            <input type="radio" id="private" name="status" value="private" checked={ post.status === 'private' } onChange={ handleInput }/>
-                            <label htmlFor="private">Private</label>
-                            <br />
+                            <label htmlFor="private"><input type="radio" id="private" name="status" value="private" checked={ post.status === 'private' } onChange={ handleInput }/>Private</label>
                         </div>
                     </div>
                     <br />

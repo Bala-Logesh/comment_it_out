@@ -1,0 +1,52 @@
+.Comment{
+    width: 100%;
+    padding: 10px 14px;
+}
+
+.Comment.flex{
+    flex-direction: column;
+    align-items: start;
+}
+
+.Comment > .flex > h5{
+    font-weight: 500;
+}
+
+.Comment > .flex{
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.Comment > .flex > h5:first-child{
+    flex: 1;
+    font-size: 1rem;
+}
+
+.Comment > .flex > h5:nth-child(2),
+.Comment > .flex > h5:last-child{
+    padding: 6px 8px;
+    border-radius: 10px;
+    color: var(--clr-text-primary);
+    background-color: var(--clr-bg-tertiary);
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.Comment > .flex > h5:last-child{
+    background-color: var(--clr-accent-red);
+}
+
+.Comment > .flex > h5:nth-child(2) > *,
+.Comment > .flex > h5:last-child > *{
+    font-size: 1rem;
+}
+
+.Comment > .flex > h5:nth-child(2):hover{
+    color: var(--clr-accent-blue);
+}
+
+.Comment > p{
+    font-size: 0.8rem;
+}

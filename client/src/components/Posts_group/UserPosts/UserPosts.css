@@ -48,8 +48,12 @@
         flex-direction: column;
     }
 
+    .UserPosts__filter{
+        padding: 14px 0;
+    }
+
     .UserPosts__posts{
-        height: 74%;
+        max-height: 74%;
     }
 }
 

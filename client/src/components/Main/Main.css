@@ -33,16 +33,16 @@
 }
 
 /* Media Queries */
-/* Screen size less than 840px */
-@media screen and (max-width: 840px){
-    .Main__left{
-        width: max-content;
-    }
-}
-
 /* Screen size less than 900px */
 @media screen and (max-width: 900px){
     .Main__right{
         display: none;
+    }
+}
+
+/* Screen size less than 840px */
+@media screen and (max-width: 840px){
+    .Main__left{
+        width: max-content;
     }
 }

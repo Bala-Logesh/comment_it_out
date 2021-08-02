@@ -1,0 +1,35 @@
+.CommentForm{
+    width: 100%;
+    margin: 10px;
+    padding: 0 14px 10px;
+}
+
+.CommentForm > form{
+    width: 100%;
+}
+
+.CommentForm > form.flex{
+    gap: 10px;
+}
+
+.CommentForm > form > input,
+.CommentForm > form > button{
+    padding: 10px 10px;
+    border-radius: 10px;
+    color: var(--clr-text-primary);
+    background-color: var(--clr-bg-tertiary);
+    font-size: 0.8rem;
+}
+
+.CommentForm > form > button > *{
+    font-size: 0.8rem;
+}
+
+.CommentForm > form > input{
+    flex: 1;
+}
+
+.CommentForm > form > input:hover,
+.CommentForm > form > button:hover{
+    color: var(--clr-accent-blue);
+}

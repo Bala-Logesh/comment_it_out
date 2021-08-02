@@ -6,7 +6,6 @@ import './Form.css'
 
 const Register = () => {
     const error = null
-    let imageName = null
 
     const [user, setUser] = useState({
         username: '',

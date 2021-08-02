@@ -82,7 +82,7 @@ const App = () => {
               <Main Menu={ Menu } Center={ Following } />
             </Route>
             <Route path='/:id/settings'>
-              <Main Center={ EditUser } />
+              <Main Menu={ Menu } Center={ EditUser } />
             </Route>
 
             {/* Suggested users route */}
@@ -92,10 +92,10 @@ const App = () => {
 
             {/* Post related route */}
             <Route path='/create'>
-              <Main Center={ PostForm } />
+              <Main Menu={ Menu } Center={ PostForm } />
             </Route>
             <Route path='/editPost/:id'>
-              <Main Center={ EditPostForm } />
+              <Main Menu={ Menu } Center={ EditPostForm } />
             </Route>
             <Route path='/search'>
               <Main Menu={ Menu } Center={ Search } />

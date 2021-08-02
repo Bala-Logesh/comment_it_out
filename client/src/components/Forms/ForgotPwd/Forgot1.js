@@ -11,7 +11,7 @@ const Forgot1 = () => {
     }
 
     return (
-        <div className='form flex'>
+        <div className='form flex' style={{ alignItems: 'center' }}>
             <div className="form__container flex">
                 <h2>Reset your password</h2>
                 <form onSubmit={ handleSubmit } className='form__form flex' autoComplete='off'>

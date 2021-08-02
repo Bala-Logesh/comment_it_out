@@ -60,6 +60,7 @@
 
 .Post__main{
     width: 100%;
+    border-bottom: 1px solid var(--clr-text-grey);
 }
 
 .Post__main.flex{
@@ -72,7 +73,6 @@
 
 .Post__main > p:last-child{
     width: 100%;
-    border-bottom: 1px solid var(--clr-text-grey);
     font-style: italic;
     color: var(--clr-accent-blue);
 }
@@ -116,10 +116,27 @@
     color: var(--clr-accent-blue);
 }
 
+.Post__comment{
+    width: 100%;
+    border-top: 1px solid var(--clr-text-grey);
+}
+
+.Post__comment.flex{
+    flex-direction: column;
+}
+
+.Post__comment-hide{
+    display: none;
+}
+
 /* Media Queries */
-/* Screen size less than 400px */
-@media screen and (max-width: 400px){
+/* Screen size less than 414px */
+@media screen and (max-width: 414px){
     .Post__icons > .icons{
         padding: 10px;
+    }
+
+    .Post__icons.flex{
+        flex-wrap: wrap;
     }
 }

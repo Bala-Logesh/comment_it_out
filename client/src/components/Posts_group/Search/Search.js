@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Posts from '../Posts/Posts'
+import SearchIcon from '@material-ui/icons/Search';
 import './Search.css'
 
 const Search = () => {
@@ -15,9 +16,9 @@ const Search = () => {
     return (
         <div className='Search flex'>
             <div className="Search__filter flex">
-                <form onSubmit={ handleSearch } autoComplete='off'>
-                    <input type="text" name='tags' placeholder='Enter the tag and press Enter to search' value={tags} onChange={e => setTags(e.target.value)} />
-                    <button type="submit">Search</button>
+                <form onSubmit={ handleSearch } autoComplete='off' className='form flex'>
+                    <input type="text" name='tags' placeholder='Enter the Hashtag to search' value={tags} onChange={e => setTags(e.target.value)} />
+                    <button type="submit"><SearchIcon /></button>
                 </form>
             </div>
             <div className='Search__results flex'>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './Popup.css'
 
 const Popup = () => {
-    const [modal, setModal] = useState(true)
+    const [modal, setModal] = useState(false)
     
     const closeModal = (e) => {
         if (e.target.id === 'popup') {
