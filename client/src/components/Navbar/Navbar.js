@@ -9,7 +9,7 @@ const Navbar = () => {
 
     return (
         <div className='Navbar flex'>
-            <div className="Navbar__left">
+            <div className="Navbar__left flex">
 
 
                 {/* Change this link to the / route */}
@@ -19,7 +19,6 @@ const Navbar = () => {
                 {/* Change this link to the / route */}
                 {/* Change this link to the / route */}
                 {/* Change this link to the / route */}
-
 
                 <h3><Link to='/home'>&#47;&#47;Comment_It_Out</Link></h3>
             </div>

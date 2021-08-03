@@ -6,6 +6,8 @@ import './css/App.css'
 import Main from './components/Main/Main'
 
 import Popup from './components/Popup/Popup'
+import PopupPost from './components/Popup/PopupPost'
+import PopupUser from './components/Popup/PopupUser'
 import Menu from './components/Menu/Menu'
 import Navbar from './components/Navbar/Navbar'
 
@@ -29,10 +31,15 @@ import PostForm from './components/Forms/PostForm'
 import EditPostForm from './components/Forms/EditPostForm'
 import Search from './components/Posts_group/Search/Search'
 
+import Page404 from './components/ErrorPages/Page404'
+import Page500 from './components/ErrorPages/Page500'
+
 const App = () => {
   return (
     <Router>
       <Popup />
+      <PopupUser />
+      <PopupPost />
       <div className='App flex'>
         <div className='App__navbar'>
           <Navbar />
@@ -102,6 +109,12 @@ const App = () => {
             </Route>
 
             {/* Error Routes */}
+            <Route exact path='/500'>
+              <Main Center={ Page500 } />
+            </Route>
+             <Route path='/'>
+              <Main Center={ Page404 } />
+            </Route>
           </Switch>
         </div>
       </div>
