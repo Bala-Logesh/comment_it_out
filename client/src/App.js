@@ -1,4 +1,8 @@
+import { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+
+import { loginUsingToken } from './redux'
 
 import './css/utils.css'
 import './css/App.css'
@@ -35,6 +39,13 @@ import Page404 from './components/ErrorPages/Page404'
 import Page500 from './components/ErrorPages/Page500'
 
 const App = () => {
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem('token'))
+    dispatch(loginUsingToken({ token }))
+  }, [dispatch])
+
   return (
     <Router>
       <Popup />

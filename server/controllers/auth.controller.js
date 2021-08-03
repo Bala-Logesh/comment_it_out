@@ -2,7 +2,7 @@ import User from '../models/user.model.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
-// Register a new User
+/////////////////////////////////////////////////////////////////////////// Register a new User
 export const registerUser = async (req, res) => {
   try {
     const reqUser = req.body
@@ -55,7 +55,7 @@ export const registerUser = async (req, res) => {
   }
 }
 
-// Login an existing User
+/////////////////////////////////////////////////////////////////////////// Login an existing User
 export const loginUser = async (req, res) => {
   try {
     const reqUser = req.body
@@ -95,6 +95,38 @@ export const loginUser = async (req, res) => {
       },
       error: null
     })
+  } catch (error) {
+    console.log(error)
+
+    // Error response
+    res.status(500).json({
+      status: "error",
+      data: null,
+      error: "Internal Server Error" 
+    })
+  }
+}
+
+/////////////////////////////////////////////////////////////////////////// Login an existing user from token
+export const authUser = async (req, res) => {
+  try {
+    const token = req.body.token
+
+    if (token) {
+      const { id: _id } = jwt.verify(token, process.env.JWT_SECRET)
+
+      const user = await User.findById(_id)
+    
+      // Success response
+      res.status(200).json({
+        status: 'ok',
+        data: {
+          user,
+          token
+        },
+        error: null
+      })
+    }
   } catch (error) {
     console.log(error)
 

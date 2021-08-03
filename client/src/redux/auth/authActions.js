@@ -1,6 +1,22 @@
-import { AUTH_LOGIN, AUTH_REGISTER, LOGOUT_USER } from "./authTypes";
+import { AUTH_LOGIN, AUTH_REGISTER, LOGOUT_USER, AUTH_TOKEN_LOGIN } from "./authTypes";
 import { loginError, registerError, clearError } from '../'
 import * as API from '../../api'
+
+export const loginUsingToken = (token) => async (dispatch) => {
+    const { data } = await API.auth(token)
+
+    if (data.status === 'ok') {
+        dispatch({
+            type: AUTH_TOKEN_LOGIN,
+            payload: data.data
+        })
+
+        dispatch(clearError())
+    } else if (data.status === 'error') {
+        console.log(data.error)
+        dispatch(loginError(data.error))
+    }   
+}
 
 export const loginUser = (user, history) => async (dispatch) => {    
     const { data } = await API.login(user)

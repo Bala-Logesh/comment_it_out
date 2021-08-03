@@ -1,5 +1,5 @@
 import express from 'express'
-import { loginUser, registerUser } from '../../controllers/auth.controller.js'
+import { loginUser, registerUser, authUser } from '../../controllers/auth.controller.js'
 
 const router = express.Router()
 
@@ -12,5 +12,10 @@ router.post('/register', registerUser)
 // @description Login an existing user
 // @access Public
 router.post('/login', loginUser)
+
+// @route GET api/auth/token
+// @description Login an existing user from token
+// @access Public
+router.post('/token', authUser)
 
 export default router

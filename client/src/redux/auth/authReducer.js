@@ -1,15 +1,16 @@
-import { AUTH_LOGIN, AUTH_REGISTER, LOGOUT_USER } from "./authTypes";
+import { AUTH_LOGIN, AUTH_REGISTER, LOGOUT_USER, AUTH_TOKEN_LOGIN } from "./authTypes";
 
 const initialState = {
-  user: {},
+  user: null,
   token: null
 }
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case AUTH_LOGIN:
+    case AUTH_TOKEN_LOGIN:
     case AUTH_REGISTER:
-      localStorage.setItem('token', action.payload.token)
+      localStorage.setItem('token', JSON.stringify(action.payload.token))
       return {
         ...state,
         user: action.payload.user,
@@ -20,7 +21,7 @@ const authReducer = (state = initialState, action) => {
       localStorage.removeItem('token')
       return {
         ...state,
-        user: {},
+        user: null,
         token: null
       }
     
