@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"
 dotenv.config()
 
 const auth = (req, res, next) => {
-    const token = req.header('x-auth-token')
+    const token = req.headers['x-auth-token']
     
     // Check if token is present
     if (!token)

@@ -14,14 +14,3 @@ router.post('/register', registerUser)
 router.post('/login', loginUser)
 
 export default router
-
-
-
-// {
-//     "username": "Bala Logesh",
-//     "firstName": "Bala",
-//     "lastName": "Logesh",
-//     "email": "bala@test.com",
-//     "password": "test123",
-//     "profilePic": "picture"
-// }

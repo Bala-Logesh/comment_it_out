@@ -1,4 +1,6 @@
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { logoutModal } from '../../redux';
 import PersonIcon from '@material-ui/icons/Person';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
@@ -10,6 +12,8 @@ import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 import './Menu.css'
 
 const Menu = () => {
+    const dispatch = useDispatch()
+
     return (
         <div className="Menu flex">
             <NavLink 
@@ -75,14 +79,14 @@ const Menu = () => {
                 <RecordVoiceOverIcon />
                 <span>Suggested Users</span>
             </NavLink>
-            <Link
-                to="/"
+            <div
                 className="Menu__item flex"
                 data-after='Log Out'
+                onClick={ () => dispatch(logoutModal()) }
             >
                 <PowerSettingsNewIcon />
                 <span>Log Out</span>
-            </Link>
+            </div>
         </div>
     )
 }

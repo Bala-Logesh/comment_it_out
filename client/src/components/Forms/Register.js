@@ -1,20 +1,34 @@
-import { useState } from "react"
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from "react"
+import { Link, useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from "react-redux"
+import { registerUser } from "../../redux";
 import ImageIcon from '@material-ui/icons/Image';
 import FileBase from 'react-file-base64'
 import './Form.css'
 
 const Register = () => {
-    const error = null
+    const dispatch = useDispatch()
+    const { register } = useSelector(state => state.err)
+    const auth = useSelector(state => state.auth)
+    const history = useHistory()
 
+    if (auth.user) {
+        history.push('/home')
+    }
+    
+    const [error, setError] = useState(register)
     const [user, setUser] = useState({
         username: '',
         email: '',
         password: '',
         confirmPassword: '',
         displayName: '',
-        selectedFile: ''
+        profilePic: ''
     })
+
+    useEffect(() => {
+        setError(register)
+    }, [register])
 
     const handleInput = e => {
         setUser({
@@ -25,15 +39,27 @@ const Register = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(user);
-        setUser({
-            username: '',
-            email: '',
-            password: '',
-            confirmPassword: '',
-            displayName: '',
-            selectedFile: ''
-        })
+
+        if (user.username === '') {
+            return setError('Username cannot be empty')
+        }
+        if (user.displayName === '') {
+            return setError('Display Name cannot be empty')
+        }
+        if (user.displayName.length > 2) {
+            return setError('Display Name cannot be more than 2 characters long')
+        }
+        if (user.email === '') {
+            return setError('Email cannot be empty')
+        }
+        if (user.password === '' || user.confirmPassword === '') {
+            return setError('Password cannot be empty')
+        }
+        if (user.password !== user.confirmPassword) {
+            return setError('Passwords do not match')
+        }
+
+        dispatch(registerUser(user, history))
     }
 
     return (
@@ -51,7 +77,7 @@ const Register = () => {
                         <FileBase
                             type="file"
                             multiple={false}
-                            onDone={(file) => { setUser({ ...user, selectedFile: file.base64 }); alert(`File uploaded successfully - ${ file.name }`) }}
+                            onDone={(file) => { setUser({ ...user, profilePic: file.base64 }); alert(`File uploaded successfully - ${ file.name }`) }}
                         />
                         <p>Upload a Profile Picture</p>
                         <ImageIcon />

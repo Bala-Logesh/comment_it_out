@@ -7,7 +7,7 @@ import userReducer from './user/userReducer'
 
 const rootReducer = combineReducers({
         auth: authReducer,
-        error: errorReducer,
+        err: errorReducer,
         user: userReducer,
         post: postReducer,
         misc: miscReducer

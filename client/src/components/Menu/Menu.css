@@ -32,6 +32,7 @@
 
 .Menu__item:last-child{
     margin-top: 30px;
+    cursor: pointer;
 }
 
 .Menu__item:last-child:hover{

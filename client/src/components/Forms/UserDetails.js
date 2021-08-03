@@ -33,7 +33,7 @@ const UserDetails = () => {
                     <br />
                     <div className="form__buttons flex">
                         <Link to='/123/settings'><button className='btn' type="submit">Edit Details</button></Link>
-                        <Link to='/home'><button className='btn'>Cancel</button></Link>
+                        <Link to='/home'><button className='btn'>Delete Account</button></Link>
                     </div>
                 </form>
             </div>

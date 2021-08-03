@@ -5,7 +5,7 @@ import avatar from '../../images/avatar.jpg'
 import './Navbar.css'
 
 const Navbar = () => {
-    const isAuth = true
+    const isAuth = false
 
     return (
         <div className='Navbar flex'>

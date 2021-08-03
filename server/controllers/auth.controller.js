@@ -7,21 +7,20 @@ export const registerUser = async (req, res) => {
   try {
     const reqUser = req.body
 
-    let user = await User.findOne({ email: reqUser.email })
-
     // Error response
-    if (user) return res.status(400).json({
-      status: "error",
-      data: null,
-      error: "User with the email already exists" 
-    })
-
-    // Error response
-    user = await User.findOne({ username: reqUser.username })
-    if (user) return res.status(400).json({
+    let user = await User.findOne({ username: reqUser.username })
+    if (user) return res.json({
       status: "error",
       data: null,
       error: "Username is already taken" 
+    })
+
+    // Error response
+    user = await User.findOne({ email: reqUser.email })
+    if (user) return res.json({
+      status: "error",
+      data: null,
+      error: "User with the email already exists" 
     })
 
     const salt = await bcrypt.genSalt(10)
@@ -39,7 +38,7 @@ export const registerUser = async (req, res) => {
     res.status(201).json({
       status: 'ok',
       data: {
-        resUser,
+        user: resUser,
         token
       },
       error: null
@@ -62,12 +61,12 @@ export const loginUser = async (req, res) => {
     const reqUser = req.body
 
     const user = await User.findOne({
-      $or: [{ email: reqUser.email }, { username: reqUser.username }],
+      $or: [{ email: reqUser.username }, { username: reqUser.username }],
     })
-
+    
     // Error response
     if (!user)
-      return res.status(400).json({
+      return res.json({
         status: "error",
         data: null,
         error: "User with the email or username does not exist" 
@@ -77,7 +76,7 @@ export const loginUser = async (req, res) => {
 
     // Error response
     if (!passwordsMatch)
-      return res.status(403).json({
+      return res.json({
         status: "error",
         data: null,
         error: "Invalid Credentials" 
@@ -86,7 +85,7 @@ export const loginUser = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: '1h',
     })
-    console.log(token);
+    
     // Success response
     res.status(201).json({
       status: 'ok',
