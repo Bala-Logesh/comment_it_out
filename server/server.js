@@ -1,13 +1,13 @@
 import express from "express"
-import mongoose from "mongoose"
 import cors from "cors"
 import dotenv from "dotenv"
 import user from './api/routes/user.js'
 import auth from './api/routes/auth.js'
 import forgot from './api/routes/forgot.js'
 import post from './api/routes/post.js'
-import reponseMiddleware from "./middlewares/reponse.js"
-import errorMiddleware from "./middlewares/error.js"
+import responseHandler from "./middlewares/responseHandler.js"
+import errorHandler from "./middlewares/errorHandler.js"
+import connectToDB from "./utils/db.js"
 
 dotenv.config()
 
@@ -15,18 +15,7 @@ dotenv.config()
 const app = express()
 
 // Connecting to the database
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-})
-
-mongoose.connection
-  .once("open", () => {
-    console.log("Successfully connected to the database")
-  })
-  .on("error", console.error.bind(console, "MongoDB connection error:"))
+connectToDB()
 
 // Middlewares
 app.use(cors())
@@ -43,10 +32,10 @@ app.use('/api/forgot', forgot)
 app.use('/api/post', post)
 
 // Response Middleware
-app.use(reponseMiddleware)
+app.use(responseHandler)
 
 // Error Middleware
-app.use(errorMiddleware)
+app.use(errorHandler)
 
 // Starting the server to listen on PORT
 const PORT = process.env.PORT

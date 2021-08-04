@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux"
 import { registerUser } from "../../redux";
 import ImageIcon from '@material-ui/icons/Image';
@@ -9,7 +9,6 @@ import './Form.css'
 const Register = () => {
     const dispatch = useDispatch()
     const { register } = useSelector(state => state.err)
-    const history = useHistory()
     
     const [error, setError] = useState(register)
     const [user, setUser] = useState({
@@ -54,7 +53,7 @@ const Register = () => {
             return setError('Passwords do not match')
         }
 
-        dispatch(registerUser(user, history))
+        dispatch(registerUser(user))
     }
 
     return (

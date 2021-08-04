@@ -36,7 +36,7 @@ const Login = () => {
             return setError('Password cannot be empty')
         }
 
-        dispatch(loginUser(user, history))
+        dispatch(loginUser(user))
     }
 
     return (
