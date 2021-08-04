@@ -13,6 +13,6 @@ API.interceptors.request.use(req => {
 })
 
 // Auth routes
-export const auth = (token) => API.post(`api/auth/token`, token)
+export const auth = (token) => API.post(`api/auth/token`, { token })
 export const login = (user) => API.post(`api/auth/login`, user)
 export const register = (user) => API.post(`api/auth/register`, user)

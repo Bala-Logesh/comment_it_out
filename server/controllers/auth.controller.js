@@ -68,7 +68,7 @@ export const loginUser = asyncHandler( async (req, res, next) => {
 })
 
 /////////////////////////////////////////////////////////////////////////// Login an existing user from token
-export const authUser = asyncHandler(async (req, res, next) => {
+export const authUser = asyncHandler( async (req, res, next) => {
   const token = req.body.token
 
   if (token) {
