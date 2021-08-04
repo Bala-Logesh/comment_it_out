@@ -43,7 +43,7 @@ export const loginUser = asyncHandler( async (req, res, next) => {
   const reqUser = req.body
 
   const user = await User.findOne({
-    $or: [{ email: reqsUser.username }, { username: reqUser.username }],
+    $or: [{ email: reqUser.username }, { username: reqUser.username }],
   })
 
   if (!user)

@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { loginUser } from "../../redux"
 import './Form.css'
 
 const Login = () => {
     const dispatch = useDispatch()
     const { login } = useSelector(state => state.err)
-    const history = useHistory()
 
     const [error, setError] = useState(login)
     const [user, setUser] = useState({
