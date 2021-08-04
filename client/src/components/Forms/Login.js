@@ -7,12 +7,7 @@ import './Form.css'
 const Login = () => {
     const dispatch = useDispatch()
     const { login } = useSelector(state => state.err)
-    const auth = useSelector(state => state.auth)
     const history = useHistory()
-
-    if (auth.user) {
-        history.push('/home')
-    }
 
     const [error, setError] = useState(login)
     const [user, setUser] = useState({

@@ -6,6 +6,8 @@ import user from './api/routes/user.js'
 import auth from './api/routes/auth.js'
 import forgot from './api/routes/forgot.js'
 import post from './api/routes/post.js'
+import reponseMiddleware from "./middlewares/reponse.js"
+import errorMiddleware from "./middlewares/error.js"
 
 dotenv.config()
 
@@ -39,6 +41,12 @@ app.use('/api/user', user)
 app.use('/api/auth', auth)
 app.use('/api/forgot', forgot)
 app.use('/api/post', post)
+
+// Response Middleware
+app.use(reponseMiddleware)
+
+// Error Middleware
+app.use(errorMiddleware)
 
 // Starting the server to listen on PORT
 const PORT = process.env.PORT

@@ -15,7 +15,11 @@ const Navbar = () => {
             {
                 user ? (
                     <div className="Navbar__right flex">
-                        <h3 className='desktop flex'><Link to='/123/info' className='flex'><img src={ user.profilePic } alt='Avatar' /></Link></h3>
+                        <h3 className='desktop flex'>
+                            <Link to='/123/info' className='flex'>
+                                {(user.profilePic !== '') ? <img src={user.profilePic} alt='Avatar' /> : <h3 className='flex'>{ user.displayName }</h3>}
+                            </Link>
+                        </h3>
                         <h3 className='search flex'><Link to='/search'><SearchIcon /></Link></h3>
                     </div>
                 ) : (

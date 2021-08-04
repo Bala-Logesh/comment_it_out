@@ -40,9 +40,22 @@
 }
 
 .Navbar__right > .desktop img{
-    object-fit: contain;
+    object-fit: cover;
+    border-radius: 50%;
     height: 40px;
     width: 40px;
+}
+
+.Navbar__right > .desktop h3{
+    object-fit: contain;
+    background-color: var(--clr-bg-tertiary);
+    border-radius: 50%;
+    height: 46px;
+    width: 46px;
+}
+
+.Navbar__right > .desktop h3:hover{
+    color: var(--clr-accent-blue);
 }
 
 .Navbar__right > .mobile{

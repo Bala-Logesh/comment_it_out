@@ -9,12 +9,7 @@ import './Form.css'
 const Register = () => {
     const dispatch = useDispatch()
     const { register } = useSelector(state => state.err)
-    const auth = useSelector(state => state.auth)
     const history = useHistory()
-
-    if (auth.user) {
-        history.push('/home')
-    }
     
     const [error, setError] = useState(register)
     const [user, setUser] = useState({

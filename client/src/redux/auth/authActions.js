@@ -1,8 +1,9 @@
 import { AUTH_LOGIN, AUTH_REGISTER, LOGOUT_USER, AUTH_TOKEN_LOGIN } from "./authTypes";
-import { loginError, registerError, clearError } from '../'
+import { loginError, registerError, clearError, setLoading } from '../'
 import * as API from '../../api'
 
 export const loginUsingToken = (token) => async (dispatch) => {
+    dispatch(setLoading())
     const { data } = await API.auth(token)
 
     if (data.status === 'ok') {
@@ -11,16 +12,18 @@ export const loginUsingToken = (token) => async (dispatch) => {
             payload: data.data
         })
 
+        dispatch(setLoading())
         dispatch(clearError())
     } else if (data.status === 'error') {
         console.log(data.error)
         dispatch(loginError(data.error))
+        dispatch(setLoading())
     }   
 }
 
-export const loginUser = (user, history) => async (dispatch) => {    
+export const loginUser = (user, history) => async (dispatch) => { 
+    dispatch(setLoading())   
     const { data } = await API.login(user)
-    console.log(data);
 
     if (data.status === 'ok') {
         dispatch({
@@ -28,17 +31,21 @@ export const loginUser = (user, history) => async (dispatch) => {
             payload: data.data
         })
 
+        dispatch(setLoading())
         dispatch(clearError())
 
         history.push('/home')
     } else if (data.status === 'error') {
         console.log(data.error)
         dispatch(loginError(data.error))
+        dispatch(setLoading())
     }   
 }
 
 export const registerUser = (user, history) => async (dispatch) => {
+    dispatch(setLoading())
     const { data } = await API.register(user)
+    dispatch(setLoading())
 
     if (data.status === 'ok') {
         dispatch({
@@ -52,6 +59,7 @@ export const registerUser = (user, history) => async (dispatch) => {
     } else {
         console.log(data.error)
         dispatch(registerError(data.error))
+        dispatch(setLoading())
     }
 }
 

@@ -19,6 +19,9 @@ const userSchema = new mongoose.Schema({
   profilePic: {
     type: String,
   },
+  displayName: {
+    type: String,
+  },
   following: [
     {
       type: mongoose.Schema.Types.ObjectId,

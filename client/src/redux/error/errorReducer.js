@@ -1,8 +1,9 @@
-import { LOGIN_ERROR, REGISTER_ERROR, CLEAR_ERROR} from './errorTypes'
+import { LOGIN_ERROR, REGISTER_ERROR, CLEAR_ERROR, EDIT_USER_ERROR} from './errorTypes'
 
 const initialState = {
   login: null,
-  register: null
+  register: null,
+  edituser: null
 }
 
 const errorReducer = (state = initialState, action) => {
@@ -17,6 +18,12 @@ const errorReducer = (state = initialState, action) => {
       return {
         ...state,
         register: action.payload
+      }
+  
+    case EDIT_USER_ERROR:
+      return {
+        ...state,
+        edituser: action.payload
       }
     
     case CLEAR_ERROR:

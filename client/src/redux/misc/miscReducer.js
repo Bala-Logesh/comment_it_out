@@ -1,9 +1,10 @@
-import { LOGOUT_MODAL, DEL_POST_MODAL, DEL_USER_MODAL } from './miscTypes'
+import { LOGOUT_MODAL, DEL_POST_MODAL, DEL_USER_MODAL, LOADING } from './miscTypes'
 
 const initialState = {
   logout: false,
   user: false,
-  post: false
+  post: false,
+  loading: false
 }
 
 const miscReducer = (state = initialState, action) => {
@@ -24,6 +25,12 @@ const miscReducer = (state = initialState, action) => {
       return {
         ...state,
         logout: !state.logout
+      }
+  
+    case LOADING:
+      return {
+        ...state,
+        loading: !state.loading
       }
     
     default:

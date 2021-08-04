@@ -1,3 +1,4 @@
 export const LOGIN_ERROR = 'LOGIN_ERROR'
 export const REGISTER_ERROR = 'REGISTER_ERROR'
+export const EDIT_USER_ERROR = 'EDIT_USER_ERROR'
 export const CLEAR_ERROR = 'CLEAR_ERROR'

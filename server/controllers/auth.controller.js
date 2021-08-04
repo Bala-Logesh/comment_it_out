@@ -1,27 +1,22 @@
 import User from '../models/user.model.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import { AppError, IntServerError } from '../utils/errorClass.js'
 
 /////////////////////////////////////////////////////////////////////////// Register a new User
-export const registerUser = async (req, res) => {
+export const registerUser = async (req, res, next) => {
   try {
     const reqUser = req.body
 
     // Error response
     let user = await User.findOne({ username: reqUser.username })
-    if (user) return res.json({
-      status: "error",
-      data: null,
-      error: "Username is already taken" 
-    })
+    if (user)
+      return next(new AppError("Username is already taken", 400))
 
     // Error response
     user = await User.findOne({ email: reqUser.email })
-    if (user) return res.json({
-      status: "error",
-      data: null,
-      error: "User with the email already exists" 
-    })
+    if (user)
+      return next(new AppError("User with the email already exists", 400))
 
     const salt = await bcrypt.genSalt(10)
     const hashedPwd = await bcrypt.hash(reqUser.password, salt)
@@ -34,107 +29,74 @@ export const registerUser = async (req, res) => {
       expiresIn: '1h',
     })
 
-    // Success response
-    res.status(201).json({
-      status: 'ok',
-      data: {
-        user: resUser,
-        token
-      },
-      error: null
-    })
+    resUser.password = ''
+
+    res.data = {
+      user: resUser,
+      token
+    }
+    next()
   } catch (error) {
     console.log(error)
-
-    // Error response
-    res.status(500).json({
-      status: "error",
-      data: null,
-      error: "Internal Server Error" 
-    })
+    next(new IntServerError())
   }
 }
 
 /////////////////////////////////////////////////////////////////////////// Login an existing User
-export const loginUser = async (req, res) => {
+export const loginUser = async (req, res, next) => {
   try {
     const reqUser = req.body
 
     const user = await User.findOne({
       $or: [{ email: reqUser.username }, { username: reqUser.username }],
     })
-    
-    // Error response
-    if (!user)
-      return res.json({
-        status: "error",
-        data: null,
-        error: "User with the email or username does not exist" 
-      })
 
+    if (!user)
+      return next(new AppError("User with email/username not found", 400))
+      
     const passwordsMatch = await bcrypt.compare(reqUser.password, user.password)
 
-    // Error response
     if (!passwordsMatch)
-      return res.json({
-        status: "error",
-        data: null,
-        error: "Invalid Credentials" 
-      })
+      return next(new AppError("Invalid Credentials", 400))
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: '1h',
     })
-    
-    // Success response
-    res.status(201).json({
-      status: 'ok',
-      data: {
-        user,
-        token
-      },
-      error: null
-    })
-  } catch (error) {
-    console.log(error)
 
-    // Error response
-    res.status(500).json({
-      status: "error",
-      data: null,
-      error: "Internal Server Error" 
-    })
+    user.password = ''
+
+    res.data = {
+      user,
+      token
+    }
+    next()
+  } catch (error) {
+    next(new IntServerError())
   }
 }
 
 /////////////////////////////////////////////////////////////////////////// Login an existing user from token
-export const authUser = async (req, res) => {
+export const authUser = async (req, res, next) => {
   try {
     const token = req.body.token
 
     if (token) {
-      const { id: _id } = jwt.verify(token, process.env.JWT_SECRET)
+      const { id: _id, exp } = jwt.verify(token, process.env.JWT_SECRET)
 
-      const user = await User.findById(_id)
-    
-      // Success response
-      res.status(200).json({
-        status: 'ok',
-        data: {
-          user,
-          token
-        },
-        error: null
-      })
+      if (Date.now() >= exp * 1000) {
+        return next(new AppError("Token has expired", 403))
+      }
+
+      const user = await User.findById(_id).select('-password')
+      
+      res.data = {
+        user,
+        token
+      }
+      next()
     }
   } catch (error) {
     console.log(error)
-
-    // Error response
-    res.status(500).json({
-      status: "error",
-      data: null,
-      error: "Internal Server Error" 
-    })
+    next(new IntServerError())
   }
 }
