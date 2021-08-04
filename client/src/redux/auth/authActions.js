@@ -13,7 +13,7 @@ export const loginUsingToken = () => async (dispatch) => {
         dispatch(setLoading())
         dispatch(push('/'))
     }
-    
+
     const { data } = await API.auth(token)
         
     actionHelper(dispatch, data, AUTH_TOKEN_LOGIN, loginError)
