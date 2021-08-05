@@ -1,13 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { forgotPwdEmail } from '../../../redux'
 import '../Form.css'
 
 const Forgot = () => {
-    const error = null
+    const dispatch = useDispatch()
+    const { forgot } = useSelector(state => state.err)
+    const [error, setError] = useState(forgot)
     const [email, setEmail] = useState('')
+
+    useEffect(() => {
+        setError(forgot)
+    }, [forgot])
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(email)
+        dispatch(forgotPwdEmail(email))
     }
 
     return (

@@ -74,7 +74,7 @@ const App = () => {
             {/* Forgot Password route */}
             <NoAuthRoute path='/forgot' component={ () => <Main Center={ Forgot } /> } />
             <NoAuthRoute path='/forgot1/:email' component={ () => <Main Center={ Forgot1 } /> } />
-            <NoAuthRoute path='/forgot2/:id' component={ () => <Main Center={ Forgot2 } /> } />
+            <NoAuthRoute path='/forgot2/:email' component={ () => <Main Center={ Forgot2 } /> } />
 
             {/* User related route */}
             <AuthRoute path='/:id/info' component={ () => <Main Menu={ Menu } Center={ UserDetails } /> } />

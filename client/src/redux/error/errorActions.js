@@ -1,4 +1,4 @@
-import { LOGIN_ERROR, REGISTER_ERROR, CLEAR_ERROR, EDIT_USER_ERROR } from './errorTypes'
+import { LOGIN_ERROR, REGISTER_ERROR, CLEAR_ERROR, EDIT_USER_ERROR, FORGOT_PWD_ERROR } from './errorTypes'
 
 export const loginError = error => dispatch => {
     dispatch({
@@ -17,6 +17,13 @@ export const registerError = error => dispatch => {
 export const editUserError = error => dispatch => {
     dispatch({
         type: EDIT_USER_ERROR,
+        payload: error
+    })
+}
+
+export const forgotPwdError = error => dispatch => {
+    dispatch({
+        type: FORGOT_PWD_ERROR,
         payload: error
     })
 }

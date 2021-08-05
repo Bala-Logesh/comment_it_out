@@ -6,10 +6,12 @@ import ErrorResponse from '../utils/errorResponse.js'
 /////////////////////////////////////////////////////////////////////////// Forgot password - OTP generation
 export const genOTP = asyncHandler( async (req, res, next) => {
   const { email } = req.params
-  const user = await User.findOne({ email })
+
+  console.log(email);
+  const user = await User.findOne({ email: email })
 
   if (!user)
-    return next(new ErrorResponse("User not found", 404))
+    return next(new ErrorResponse("User not found", 400))
 
   const newOTP = String(Math.floor(100000 + Math.random() * 900000))
 
@@ -31,11 +33,13 @@ export const verifyOTP = asyncHandler( async (req, res, next) => {
   const user = await User.findOne({ email })
 
   if (!user)
-    return next(new ErrorResponse("User with the email does not exist", 404))
+    return next(new ErrorResponse("User with the email does not exist", 400))
 
+  user.password = ''
+  
   if (user.OTP === OTP) {
     res.data = {
-      info: 'verified'
+      forgot: user
     }
   } else {
     return next(new ErrorResponse("Invalid OTP", 401))
@@ -51,7 +55,7 @@ export const changePassword = asyncHandler( async (req, res, next) => {
   const user = await User.findOne({ email })
 
   if (!user)
-    return next(new ErrorResponse("User with the email does not exist", 404))
+    return next(new ErrorResponse("User with the email does not exist", 400))
 
   const salt = await bcrypt.genSalt(10)
   const hashedPwd = await bcrypt.hash(password, salt)

@@ -1,12 +1,23 @@
-import { useState } from "react"
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { forgotPwdReset } from '../../../redux'
 import '../Form.css'
 
 const Forgot2 = () => {
-    const error = null
+    const dispatch = useDispatch()
+    const { forgot } = useSelector(state => state.err)
+
+    const { email } = useParams()
+    const [error, setError] = useState(forgot)
     const [user, setUser] = useState({
         password: '',
         confirmPassword: ''
     })
+
+    useEffect(() => {
+        setError(forgot)
+    }, [forgot])
 
     const handleInput = e => {
         setUser({
@@ -17,7 +28,15 @@ const Forgot2 = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(user);
+
+        if (user.password === '' || user.confirmPassword === '') {
+            return setError('Password cannot be empty')
+        }
+        if (user.password !== user.confirmPassword) {
+            return setError('Passwords do not match')
+        }
+
+        dispatch(forgotPwdReset(email, user.password))
         setUser({
             password: '',
             confirmPassword: ''

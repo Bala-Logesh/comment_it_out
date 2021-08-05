@@ -1,13 +1,24 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { forgotPwdOtp } from '../../../redux'
 import '../Form.css'
 
 const Forgot1 = () => {
-    const error = null
+    const dispatch = useDispatch()
+    const { forgot } = useSelector(state => state.err)
+
+    const { email } = useParams()
+    const [error, setError] = useState(forgot)
     const [otp, setOtp] = useState('')
+
+    useEffect(() => {
+        setError(forgot)
+    }, [forgot])
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(otp)
+        dispatch(forgotPwdOtp(email, otp))
     }
 
     return (
