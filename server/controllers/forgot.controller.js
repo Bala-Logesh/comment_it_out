@@ -1,134 +1,69 @@
 import User from '../models/user.model.js'
 import bcrypt from 'bcryptjs'
+import asyncHandler from '../middlewares/asyncHandler.js'
+import ErrorResponse from '../utils/errorResponse.js'
 
-// Forgot password - OTP generation
-export const genOTP = async (req, res) => {
-  try {
-    const { email } = req.params
-    const user = await User.findOne({ email })
+/////////////////////////////////////////////////////////////////////////// Forgot password - OTP generation
+export const genOTP = asyncHandler( async (req, res, next) => {
+  const { email } = req.params
+  const user = await User.findOne({ email })
 
-    // Error response
-    if (!user)
-      return res.status(400).json({
-        status: "error",
-        data: null,
-        error: "User with the email or username does not exist" 
-      })
+  if (!user)
+    return next(new ErrorResponse("User not found", 404))
 
-    const newOTP = String(Math.floor(100000 + Math.random() * 900000))
+  const newOTP = String(Math.floor(100000 + Math.random() * 900000))
 
-    await User.findOneAndUpdate(
-      { _id: user._id },
-      { OTP: newOTP },
-      { new: true }
-    )
+  await User.findOneAndUpdate(
+    { _id: user._id },
+    { OTP: newOTP },
+    { new: true }
+  )
 
-    // Success response
-    res.status(201).json({
-      status: 'ok',
-      data: {
-        newOTP
-      },
-      error: null
-    })
-  } catch (error) {
-    console.log(error)
-
-    // Error response
-    res.status(500).json({
-      status: "error",
-      data: null,
-      error: "Internal Server Error" 
-    })
+  res.data = {
+    forgot: newOTP
   }
-}
+  next()
+})
 
-// Forgot password - verify OTP
-export const verifyOTP = async (req, res) => {
-  try {
-    const { email, OTP } = req.params
-    const user = await User.findOne({ email })
+/////////////////////////////////////////////////////////////////////////// Forgot password - verify OTP
+export const verifyOTP = asyncHandler( async (req, res, next) => {
+  const { email, OTP } = req.params
+  const user = await User.findOne({ email })
 
-    // Error response
-    if (!user)
-      return res.status(400).json({
-        status: "error",
-        data: null,
-        error: "User with the email does not exist" 
-      })
+  if (!user)
+    return next(new ErrorResponse("User with the email does not exist", 404))
 
-    if (user.OTP === OTP) {
-
-      // Success response
-      res.status(200).json({
-        status: 'ok',
-        data: {
-          data: 'verified'
-        },
-        error: null
-      })
-    } else {
-
-      // Error response
-      res.status(403).json({
-        status: "error",
-        data: null,
-        error: "Invalid OTP" 
-      })
+  if (user.OTP === OTP) {
+    res.data = {
+      info: 'verified'
     }
-  } catch (error) {
-    console.log(error)
-
-    // Error response
-    res.status(500).json({
-      status: "error",
-      data: null,
-      error: "Internal Server Error" 
-    })
+  } else {
+    return next(new ErrorResponse("Invalid OTP", 401))
   }
-}
+  next()
+})
 
-// Forgot password - Change password
-export const changePassword = async (req, res) => {
-  try {
-    const { email } = req.params
-    const { password } = req.body
+/////////////////////////////////////////////////////////////////////////// Forgot password - Change password
+export const changePassword = asyncHandler( async (req, res, next) => {
+  const { email } = req.params
+  const { password } = req.body
 
-    const user = await User.findOne({ email })
+  const user = await User.findOne({ email })
 
-    // Error response
-    if (!user)
-      return res.status(400).json({
-        status: "error",
-        data: null,
-        error: "User with the email does not exist" 
-      })
+  if (!user)
+    return next(new ErrorResponse("User with the email does not exist", 404))
 
-    const salt = await bcrypt.genSalt(10)
-    const hashedPwd = await bcrypt.hash(password, salt)
+  const salt = await bcrypt.genSalt(10)
+  const hashedPwd = await bcrypt.hash(password, salt)
 
-    const resUser = await User.findOneAndUpdate(
-      { _id: user._id },
-      { password: hashedPwd },
-      { new: true }
-    )
-    
-    // Success response
-    res.status(201).json({
-      status: 'ok',
-      data: {
-        resUser
-      },
-      error: null
-    })
-  } catch (error) {
-    console.log(error)
+  const resUser = await User.findOneAndUpdate(
+  { _id: user._id },
+  { password: hashedPwd },
+  { new: true }
+  )
 
-    // Error response
-    res.status(500).json({
-      status: "error",
-      data: null,
-      error: "Internal Server Error" 
-    })
+  res.data = {
+    forgot: resUser
   }
-}
+  next()
+})

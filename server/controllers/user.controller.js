@@ -61,7 +61,7 @@ export const deleteUser = asyncHandler( async (req, res, next) => {
   await User.findOneAndDelete({ _id })
     
   res.data = {
-    user: 'User deleted'
+    info: 'User deleted'
   }
   next()
 })
@@ -89,7 +89,7 @@ export const followUser = asyncHandler(async (req, res, next) => {
   const newUser = await User.findOneAndUpdate({ _id }, { following: user.following }, { new: true })
     
   res.data = {
-    user: status
+    info: status
   }
 
   next()
