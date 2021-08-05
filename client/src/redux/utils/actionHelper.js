@@ -12,7 +12,8 @@ const actionHelper = (dispatch, data, action_type, err_func, push_loc) => {
             dispatch(push('/404'))
         }
 
-        if (data.statusCode === 403) {
+        if (data.statusCode === 403 || data.error === 'jwt expired') {
+            data.error = 'Session expired. Please login again'
             dispatch(logoutUser())
             dispatch(push('/login'))
         }
