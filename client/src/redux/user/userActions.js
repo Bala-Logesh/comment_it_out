@@ -1,6 +1,5 @@
 import { GET_USER, GET_USERS, EDIT_USER, DELETE_USER, FOLLOW_USER } from './userTypes'
 import { setLoading, UserError, logoutUser } from '../'
-import { push } from 'connected-react-router'
 import * as API from '../../api'
 import actionHelper from "../utils/actionHelper";
 
