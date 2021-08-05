@@ -30,6 +30,7 @@ export const registerUser = asyncHandler( async (req, res, next) => {
     })
 
     resUser.password = ''
+    res.statusCode = 201
 
     res.data = {
       user: resUser,

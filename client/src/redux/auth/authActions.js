@@ -7,17 +7,16 @@ import actionHelper from "../utils/actionHelper";
 /////////////////////////////////////////////////////////////////////////// Login an existing user from token
 export const loginUsingToken = () => async (dispatch) => {
     dispatch(setLoading())
-    const token = JSON.parse(localStorage.getItem('token'))
+    const token = localStorage.getItem('token')
 
     if (!token) {
         dispatch(setLoading())
         dispatch(push('/'))
-    }
-
-    const { data } = await API.auth(token)
+    } else {
+        const { data } = await API.auth(token)
         
-    actionHelper(dispatch, data, AUTH_TOKEN_LOGIN, loginError)
-    dispatch(push('/home'))
+        actionHelper(dispatch, data, AUTH_TOKEN_LOGIN, loginError, 'home')
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////// Login an existing User
@@ -25,8 +24,7 @@ export const loginUser = (user) => async (dispatch) => {
     dispatch(setLoading())
     const { data } = await API.login(user)
         
-    actionHelper(dispatch, data, AUTH_LOGIN, loginError)
-    dispatch(push('/home'))
+    actionHelper(dispatch, data, AUTH_LOGIN, loginError, 'home')
 }
 
 /////////////////////////////////////////////////////////////////////////// Register a new User
@@ -34,8 +32,7 @@ export const registerUser = (user) => async (dispatch) => {
     dispatch(setLoading())
     const { data } = await API.register(user)
         
-    actionHelper(dispatch, data, AUTH_REGISTER, registerError)
-    dispatch(push('/home'))
+    actionHelper(dispatch, data, AUTH_REGISTER, registerError, 'home')
 }
 
 /////////////////////////////////////////////////////////////////////////// Logout the current user

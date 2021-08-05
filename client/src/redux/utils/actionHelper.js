@@ -1,7 +1,7 @@
 import { push } from 'connected-react-router'
 import { clearError, setLoading, logoutUser } from '../'
 
-const actionHelper = (dispatch, data, action_type, err_func) => {
+const actionHelper = (dispatch, data, action_type, err_func, push_loc) => {
     console.log(data);
     if (data.status === 'error') {
         if (data.statusCode === 500) {
@@ -29,6 +29,7 @@ const actionHelper = (dispatch, data, action_type, err_func) => {
 
         dispatch(setLoading())
         dispatch(clearError())
+        dispatch(push(`/${push_loc}`))
     }
 }
 

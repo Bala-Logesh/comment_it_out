@@ -1,8 +1,11 @@
+import { useSelector } from 'react-redux'
 import './Loading.css'
 
 const Loading = () => {
+    const { loading } = useSelector(state => state.misc)
+    
     return (
-        <div className='Loading flex'>
+        <div className={loading ? 'Loading flex' : 'hidden'}>
             <div className="Loader"></div>
         </div>
     )

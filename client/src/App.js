@@ -1,11 +1,14 @@
 import { useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { loginUsingToken } from './redux'
 
 import './css/utils.css'
 import './css/App.css'
+
+import AuthRoute from './utils/AuthRoute'
+import NoAuthRoute from './utils/NoAuthRoute'
 
 import Main from './components/Main/Main'
 
@@ -41,100 +44,60 @@ import Loading from './components/Loading/Loading'
 
 const App = () => {
   const dispatch = useDispatch()
-  const { loading } = useSelector(state => state.misc)
   
   useEffect(() => {
     dispatch(loginUsingToken())
   }, [dispatch])
 
   return (
-    loading ? (
+    <>
       <Loading />
-    ) : (
-      <>
-        <Popup />
-        <PopupUser />
-        <PopupPost />
-        <div className='App flex'>
-          <div className='App__navbar'>
-            <Navbar />
-          </div>
-          <div className='App__main'>
-            <Switch>
-              {/* Landing Page route */}
-              <Route exact path='/'>
-                <Main Center={ Landing } />
-              </Route>
-
-              {/* Home page route */}
-              <Route path='/home'>
-                <Main Menu={ Menu } Center={ Posts } Suggestions={ UserSuggestions } />
-              </Route>
-
-              {/* Login and Signup route */}
-              <Route path='/login'>
-                <Main Center={ Login } />
-              </Route>
-              <Route path='/signup'>
-                <Main Center={ Register } />
-              </Route>
-
-              {/* Forgot Password route */}
-              <Route path='/forgot'>
-                <Main Center={ Forgot } />
-              </Route>
-              <Route path='/forgot1/:email'>
-                <Main Center={ Forgot1 } />
-              </Route>
-              <Route path='/forgot2/:id'>
-                <Main Center={ Forgot2 } />
-              </Route>
-
-              {/* User related route */}
-              <Route path='/:id/info'>
-                <Main Menu={ Menu } Center={ UserDetails } />
-              </Route>
-              <Route path='/:id/posts'>
-                <Main Menu={ Menu } Center={ UserPosts } />
-              </Route>
-              <Route path='/:id/favposts'>
-                <Main Menu={ Menu } Center={ FavPosts } />
-              </Route>
-              <Route path='/:id/following'>
-                <Main Menu={ Menu } Center={ Following } />
-              </Route>
-              <Route path='/:id/settings'>
-                <Main Menu={ Menu } Center={ EditUser } />
-              </Route>
-
-              {/* Suggested users route */}
-              <Route path='/suggested'>
-                <Main Menu={ Menu } Center={ UserSuggestions } />
-              </Route>
-
-              {/* Post related route */}
-              <Route path='/create'>
-                <Main Menu={ Menu } Center={ PostForm } />
-              </Route>
-              <Route path='/editPost/:id'>
-                <Main Menu={ Menu } Center={ EditPostForm } />
-              </Route>
-              <Route path='/search'>
-                <Main Menu={ Menu } Center={ Search } />
-              </Route>
-
-              {/* Error Routes */}
-              <Route exact path='/500'>
-                <Main Center={ Page500 } />
-              </Route>
-              <Route path='/'>
-                <Main Center={ Page404 } />
-              </Route>
-            </Switch>
-          </div>
+      <Popup />
+      <PopupUser />
+      <PopupPost />
+      <div className='App flex'>
+        <div className='App__navbar'>
+          <Navbar />
         </div>
-      </>
-    )
+        <div className='App__main'>
+          <Switch>
+            {/* Landing Page route */}
+            <NoAuthRoute exact path='/' component={ () => <Main Center={ Landing } /> } />
+
+            {/* Home page route */}
+            <AuthRoute path='/home' component={ () => <Main Menu={ Menu } Center={ Posts } Suggestions={ UserSuggestions } /> } />
+
+            {/* Login and Signup route */}
+            <NoAuthRoute path='/login' component={ () => <Main Center={ Login } /> } />
+            <NoAuthRoute path='/signup' component={ () => <Main Center={ Register } /> } />
+
+            {/* Forgot Password route */}
+            <NoAuthRoute path='/forgot' component={ () => <Main Center={ Forgot } /> } />
+            <NoAuthRoute path='/forgot1/:email' component={ () => <Main Center={ Forgot1 } /> } />
+            <NoAuthRoute path='/forgot2/:id' component={ () => <Main Center={ Forgot2 } /> } />
+
+            {/* User related route */}
+            <AuthRoute path='/:id/info' component={ () => <Main Menu={ Menu } Center={ UserDetails } /> } />
+            <AuthRoute path='/:id/posts' component={ () => <Main Menu={ Menu } Center={ UserPosts } /> } />
+            <AuthRoute path='/:id/favposts' component={ () => <Main Menu={ Menu } Center={ FavPosts } /> } />
+            <AuthRoute path='/:id/following' component={ () => <Main Menu={ Menu } Center={ Following } /> } />
+            <AuthRoute path='/:id/settings' component={ () => <Main Menu={ Menu } Center={ EditUser } /> } />
+
+            {/* Suggested users route */}
+            <AuthRoute path='/suggested' component={ () => <Main Menu={ Menu } Center={ UserSuggestions } /> } />
+
+            {/* Post related route */}
+            <AuthRoute path='/create' component={ () => <Main Menu={ Menu } Center={ PostForm } /> } />
+            <AuthRoute path='/editPost/:id' component={ () => <Main Menu={ Menu } Center={ EditPostForm } /> } />
+            <AuthRoute path='/search' component={ () => <Main Menu={ Menu } Center={ Search } /> } />
+
+            {/* Error Routes */}
+            <Route exact path='/500' component={ () => <Main Center={ Page500 } /> } />
+            <Route path='/' component={ () => <Main Center={ Page404 } /> } />
+          </Switch>
+        </div>
+      </div>
+    </>
   )
 };
 
