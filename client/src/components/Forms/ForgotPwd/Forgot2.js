@@ -7,6 +7,7 @@ import '../Form.css'
 const Forgot2 = () => {
     const dispatch = useDispatch()
     const { forgot } = useSelector(state => state.err)
+    const auth = useSelector(state => state.auth)
 
     const { email } = useParams()
     const [error, setError] = useState(forgot)
@@ -36,7 +37,7 @@ const Forgot2 = () => {
             return setError('Passwords do not match')
         }
 
-        dispatch(forgotPwdReset(email, user.password))
+        dispatch(forgotPwdReset(email, user.password, auth.forgot._id))
         setUser({
             password: '',
             confirmPassword: ''

@@ -23,7 +23,7 @@ const authReducer = (state = initialState, action) => {
     case AUTH_FORGOT_PWD:
       return {
         ...state,
-        forgot: action.payload,
+        forgot: action.payload.forgot,
       }
     
     case LOGOUT_USER:
@@ -31,7 +31,8 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         user: null,
-        token: null
+        token: null,
+        forgot: null
       }
     
     default:

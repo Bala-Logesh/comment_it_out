@@ -60,24 +60,3 @@ router.delete('/:id/comment', auth, deleteComment)
 router.patch('/:id/like', auth, likePost)
 
 export default router
-
-// {
-//     "user": "60f1ad02599d1b28f3598b14",
-//     "title": "post 1",
-//     "body": "Post body",
-//     "tags": ["Post", "one"],
-//     "comments": [
-//         {
-//             "user": "60f1ad02599d1b28f3598b14",
-//             "body": "Post 1 comment 1"
-//         },
-//         {
-//             "user": "60f1ad02599d1b28f3598b14",
-//             "body": "Post 1 comment 2"
-//         }
-//     ],
-//     "likes": [
-//         "60f1ad02599d1b28f3598b14",
-//         "60f1ad02599d1b28f3598b14"
-//     ]
-// }

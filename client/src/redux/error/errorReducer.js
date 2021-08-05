@@ -1,9 +1,10 @@
-import { LOGIN_ERROR, REGISTER_ERROR, CLEAR_ERROR, EDIT_USER_ERROR, FORGOT_PWD_ERROR } from './errorTypes'
+import { LOGIN_ERROR, REGISTER_ERROR, CLEAR_ERROR, USER_ERROR, POST_ERROR, FORGOT_PWD_ERROR } from './errorTypes'
 
 const initialState = {
   login: null,
   register: null,
-  edituser: null,
+  user: null,
+  post: null,
   forgot: null
 }
 
@@ -21,10 +22,16 @@ const errorReducer = (state = initialState, action) => {
         register: action.payload
       }
   
-    case EDIT_USER_ERROR:
+    case USER_ERROR:
       return {
         ...state,
-        edituser: action.payload
+        User: action.payload
+      }
+    
+    case POST_ERROR:
+      return {
+        ...state,
+        post: action.payload
       }
     
     case FORGOT_PWD_ERROR:
@@ -38,7 +45,9 @@ const errorReducer = (state = initialState, action) => {
         ...state,
         login: null,
         register: null,
-        forgot: null
+        forgot: null,
+        user: null,
+        post: null
       }
     
     default:

@@ -84,7 +84,23 @@ const App = () => {
             <AuthRoute path='/:id/settings' component={ () => <Main Menu={ Menu } Center={ EditUser } /> } />
 
             {/* Suggested users route */}
-            <AuthRoute path='/suggested' component={ () => <Main Menu={ Menu } Center={ UserSuggestions } /> } />
+            <AuthRoute path='/suggested' component={() => <Main Menu={Menu} Center={UserSuggestions} />} />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            <AuthRoute path='/suggested/:id' component={ () => <Main Menu={ Menu } Center={ UserDetails } /> } />
 
             {/* Post related route */}
             <AuthRoute path='/create' component={ () => <Main Menu={ Menu } Center={ PostForm } /> } />

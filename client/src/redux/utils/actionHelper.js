@@ -30,7 +30,7 @@ const actionHelper = (dispatch, data, action_type, err_func, push_loc) => {
 
         dispatch(setLoading())
         dispatch(clearError())
-        dispatch(push(`/${push_loc}`))
+        push_loc && dispatch(push(`/${push_loc}`))
     }
 }
 

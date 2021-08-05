@@ -22,13 +22,13 @@ export const genOTP = asyncHandler( async (req, res, next) => {
   )
 
   res.data = {
-    forgot: newOTP
+    forgot: 'OTP Generated'
   }
   next()
 })
 
 /////////////////////////////////////////////////////////////////////////// Forgot password - verify OTP
-export const verifyOTP = asyncHandler( async (req, res, next) => {
+export const verifyOTP = asyncHandler(async (req, res, next) => {
   const { email, OTP } = req.params
   const user = await User.findOne({ email })
 
@@ -49,10 +49,9 @@ export const verifyOTP = asyncHandler( async (req, res, next) => {
 
 /////////////////////////////////////////////////////////////////////////// Forgot password - Change password
 export const changePassword = asyncHandler( async (req, res, next) => {
-  const { email } = req.params
-  const { password } = req.body
+  const { password, _id} = req.body
 
-  const user = await User.findOne({ email })
+  const user = await User.findById(_id)
 
   if (!user)
     return next(new ErrorResponse("User with the email does not exist", 400))
@@ -67,7 +66,7 @@ export const changePassword = asyncHandler( async (req, res, next) => {
   )
 
   res.data = {
-    forgot: resUser
+    forgot: 'Password Changed successfully'
   }
   next()
 })

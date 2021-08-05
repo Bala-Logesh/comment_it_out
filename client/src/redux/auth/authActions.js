@@ -59,9 +59,9 @@ export const forgotPwdOtp = (email, otp) => async (dispatch) => {
 }
 
 /////////////////////////////////////////////////////////////////////////// Forgot password - Reset Password
-export const forgotPwdReset = (email, password) => async (dispatch) => {
+export const forgotPwdReset = (email, password, _id) => async (dispatch) => {
     dispatch(setLoading())
-    const { data } = await API.forgot3(email, password)
+    const { data } = await API.forgot3(email, password, _id)
 
     actionHelper(dispatch, data, AUTH_FORGOT_PWD, forgotPwdError, `login`)
 }
