@@ -17,7 +17,7 @@ const Search = () => {
         <div className='Search flex'>
             <div className="Search__filter flex">
                 <form onSubmit={ handleSearch } autoComplete='off' className='form flex'>
-                    <input type="text" name='tags' placeholder='Enter the Hashtag to search' value={tags} onChange={e => setTags(e.target.value)} />
+                    <input type="text" name='tags' placeholder='Type something to search....' value={tags} onChange={e => setTags(e.target.value)} />
                     <button type="submit"><SearchIcon /></button>
                 </form>
             </div>

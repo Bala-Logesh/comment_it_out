@@ -1,0 +1,9 @@
+.SuggestedUser{
+    width: 100%;
+    height: 100%;
+}
+
+.SuggestedUser.flex{
+    flex-direction: column;
+    gap: 20px;
+}

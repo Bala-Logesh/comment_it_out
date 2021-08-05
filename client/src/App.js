@@ -20,6 +20,7 @@ import Navbar from './components/Navbar/Navbar'
 
 import Landing from './components/Landing/Landing'
 import UserSuggestions from './components/UserSuggestions/UserSuggestions'
+import SuggestedUserDetails from './components/UserSuggestions/SuggestedUserDetails/SuggestedUserDetails'
 import Posts from './components/Posts_group/Posts/Posts'
 
 import Login from './components/Forms/Login'
@@ -84,23 +85,8 @@ const App = () => {
             <AuthRoute path='/:id/settings' component={ () => <Main Menu={ Menu } Center={ EditUser } /> } />
 
             {/* Suggested users route */}
-            <AuthRoute path='/suggested' component={() => <Main Menu={Menu} Center={UserSuggestions} />} />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-            <AuthRoute path='/suggested/:id' component={ () => <Main Menu={ Menu } Center={ UserDetails } /> } />
+            <AuthRoute path='/suggested/:id' component={ () => <Main Menu={ Menu } Center={ SuggestedUserDetails } /> } />
+            <AuthRoute path='/suggested' component={ () => <Main Menu={Menu} Center={UserSuggestions} /> } />
 
             {/* Post related route */}
             <AuthRoute path='/create' component={ () => <Main Menu={ Menu } Center={ PostForm } /> } />
