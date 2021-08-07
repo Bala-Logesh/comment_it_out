@@ -29,7 +29,7 @@ export const loginUser = (user) => async (dispatch) => {
     dispatch(setLoading())
     const { data } = await API.login(user)
         
-    actionHelper(dispatch, data, AUTH_LOGIN, loginError, 'home')
+    actionHelper(dispatch, data, AUTH_LOGIN, loginError, 'home', after_fn)
 }
 
 /////////////////////////////////////////////////////////////////////////// Register a new User
@@ -37,7 +37,7 @@ export const registerUser = (user) => async (dispatch) => {
     dispatch(setLoading())
     const { data } = await API.register(user)
         
-    actionHelper(dispatch, data, AUTH_REGISTER, registerError, 'home')
+    actionHelper(dispatch, data, AUTH_REGISTER, registerError, 'home', after_fn)
 }
 
 /////////////////////////////////////////////////////////////////////////// Logout the current user

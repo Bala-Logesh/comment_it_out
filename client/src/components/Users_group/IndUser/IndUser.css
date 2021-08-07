@@ -2,6 +2,7 @@
     width: 100%;
     padding: 14px 20px;
     border-radius: 10px;
+    border-bottom: 1px solid var(--clr-text-grey);
 }
 
 .IndUser:hover{
@@ -20,10 +21,11 @@
     border-radius: 50px;
 }
 
-.IndUser > .avatar > img{
-    object-fit: contain;
+.IndUser img{
+    object-fit: cover;
     height: 40px;
     width: 40px;
+    border-radius: 50px;
 }
 
 .IndUser > .username{

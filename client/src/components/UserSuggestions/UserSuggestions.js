@@ -6,7 +6,8 @@ const UserSuggestions = () => {
     const { users } = useSelector(state => state.user)
     const auth = useSelector(state => state.auth)
 
-    const filteredUsers = users?.filter(user => user._id !== auth.user._id)
+    let filteredUsers = users?.filter(user => user._id !== auth.user._id)
+    filteredUsers = filteredUsers?.filter(user => !user.following.includes(auth.user._id))
     
     return (
         <div className='UserSuggestions flex'>

@@ -54,7 +54,7 @@ const Post = ({ post, users }) => {
                     {post.status === 'public' ? <VisibilityIcon /> : <VisibilityOffIcon />}
                 </div>
                 {(post.user === user._id) &&
-                    <div className="icons">
+                    <div className="icons red">
                         <DeleteIcon />
                     </div>
                 }

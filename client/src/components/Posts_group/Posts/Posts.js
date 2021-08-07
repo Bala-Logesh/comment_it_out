@@ -11,7 +11,7 @@ const Posts = ({ filteredPosts = [], onlyFiltered = false }) => {
     if (onlyFiltered) {
         dispPosts = filteredPosts
     } else if (!onlyFiltered) {
-        dispPosts = posts
+        dispPosts = posts?.filter(post => post.status === 'public')
     }
 
     return (

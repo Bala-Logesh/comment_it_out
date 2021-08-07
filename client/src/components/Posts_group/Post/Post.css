@@ -104,7 +104,7 @@
     background-color: var(--clr-bg-tertiary);
 }
 
-.Post__icons > .icons:last-child:hover{
+.Post__icons > .icons.red:hover{
     color: var(--clr-text-primary);
     background-color: var(--clr-accent-red);
 }

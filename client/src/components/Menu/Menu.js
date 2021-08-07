@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutModal } from '../../redux';
 import PersonIcon from '@material-ui/icons/Person';
 import PostAddIcon from '@material-ui/icons/PostAdd';
@@ -13,12 +13,13 @@ import './Menu.css'
 
 const Menu = () => {
     const dispatch = useDispatch()
+    const { user } = useSelector(state => state.auth)
 
     return (
         <div className="Menu flex">
             <NavLink 
                 activeClassName="Menu__item-active" 
-                to="/123/info" 
+                to={ `/${ user._id }/info` }
                 className="Menu__item flex" 
                 data-after='User Info'
             >
@@ -27,7 +28,7 @@ const Menu = () => {
             </NavLink>
             <NavLink
                 activeClassName="Menu__item-active"
-                to="/123/posts"
+                to={`/${user._id}/posts`}
                 className="Menu__item flex"
                 data-after='My Posts'
             >
@@ -45,7 +46,7 @@ const Menu = () => {
             </NavLink>
             <NavLink
                 activeClassName="Menu__item-active"
-                to="/123/favposts"
+                to={`/${user._id}/favposts`}
                 className="Menu__item flex"
                 data-after='Favourites'
             >
@@ -54,7 +55,7 @@ const Menu = () => {
             </NavLink>
             <NavLink
                 activeClassName="Menu__item-active"
-                to="/123/following"
+                to={`/${user._id}/following`}
                 className="Menu__item flex"
                 data-after='Following'
             >
@@ -63,7 +64,7 @@ const Menu = () => {
             </NavLink>
             <NavLink
                 activeClassName="Menu__item-active"
-                to="/123/settings"
+                to={`/${user._id}/settings`}
                 className="Menu__item flex"
                 data-after='User Settings'
             >

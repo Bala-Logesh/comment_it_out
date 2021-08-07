@@ -53,7 +53,13 @@ const Register = () => {
             return setError('Passwords do not match')
         }
 
-        dispatch(registerUser(user))
+        const newUser = {
+            ...user
+        }
+
+        newUser.displayName = newUser.displayName.toUpperCase()
+
+        dispatch(registerUser(newUser))
     }
 
     return (
