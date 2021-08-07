@@ -3,6 +3,14 @@ import { setLoading, UserError, logoutUser } from '../'
 import * as API from '../../api'
 import actionHelper from "../utils/actionHelper";
 
+const after_fn_logout = (dispatch) => {
+    dispatch(logoutUser())
+}
+
+const after_fn = (dispatch) => {
+    dispatch(getUsers())
+}
+
 /////////////////////////////////////////////////////////////////////////// Get all the users
 export const getUsers = () => async (dispatch) => { 
     dispatch(setLoading())
@@ -31,9 +39,8 @@ export const editUser = (id, update) => async (dispatch) => {
 export const deleteUser = (id) => async (dispatch) => { 
     dispatch(setLoading())
     const { data } = await API.deleteUser(id)
-    dispatch(logoutUser())
         
-    actionHelper(dispatch, data, DELETE_USER, UserError, '')
+    actionHelper(dispatch, data, DELETE_USER, UserError, '', after_fn_logout)
 }
 
 /////////////////////////////////////////////////////////////////////////// Following or unfollowing an existing user
@@ -41,5 +48,5 @@ export const followUser = (id, followId) => async (dispatch) => {
     dispatch(setLoading())
     const { data } = await API.followUser(id, followId)
         
-    actionHelper(dispatch, data, FOLLOW_USER, UserError, 'suggested')
+    actionHelper(dispatch, data, FOLLOW_USER, UserError, null, after_fn)
 }

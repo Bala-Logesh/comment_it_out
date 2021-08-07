@@ -3,6 +3,10 @@ import { setLoading, postError } from '../'
 import * as API from '../../api'
 import actionHelper from "../utils/actionHelper";
 
+const after_fn = (dispatch) => {
+    dispatch(getPosts())
+}
+
 /////////////////////////////////////////////////////////////////////////// Get all the posts
 export const getPosts = () => async (dispatch) => { 
     dispatch(setLoading())
@@ -70,9 +74,9 @@ export const deleteComment = (id) => async (dispatch) => {
 }
 
 /////////////////////////////////////////////////////////////////////////// Like or Dislike the post with ID
-export const likePost = (id, followId) => async (dispatch) => { 
+export const likePost = (id, userId) => async (dispatch) => { 
     dispatch(setLoading())
-    const { data } = await API.likePost(id, followId)
+    const { data } = await API.likePost(id, userId)
         
-    actionHelper(dispatch, data, LIKE_POST, postError, 'home')
+    actionHelper(dispatch, data, LIKE_POST, postError, 'home', after_fn)
 }

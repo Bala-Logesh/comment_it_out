@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import FileBase from 'react-file-base64'
+import ImageIcon from '@material-ui/icons/Image';
 import './Form.css'
 
 const EditPostForm = () => {
@@ -8,7 +10,8 @@ const EditPostForm = () => {
         title: 'Post 1',
         subtitle: 'Post 1 Subtitle',
         body: 'Post 1 Body',
-        status: 'public'
+        status: 'public',
+        image: ''
     })
 
     const handleInput = e => {
@@ -41,7 +44,15 @@ const EditPostForm = () => {
                             <label htmlFor="private"><input type="radio" id="private" name="status" value="private" checked={ post.status === 'private' } onChange={ handleInput }/>Private</label>
                         </div>
                     </div>
-                    <br />
+                    <label className="form__file flex">
+                        <FileBase
+                            type="file"
+                            multiple={false}
+                            onDone={(file) => { setPost({ ...post, image: file.base64 }); alert(`File uploaded successfully - ${file.name}`) }}
+                        />
+                        <p>Upload a image for the post</p>
+                        <ImageIcon />
+                    </label>
                     <div className="form__buttons flex">
                         <button className='btn' type="submit">Save Changes</button>
                         <Link to='/home'><button className='btn'>Cancel</button></Link>

@@ -78,7 +78,7 @@
     color: var(--clr-accent-blue);
 }
 
-.Post__main > img{
+.Post__main > div > img{
     width: 100%;
     object-fit: contain;
     margin: 0 auto;
@@ -126,7 +126,7 @@
     flex-direction: column;
 }
 
-.Post__comment-hide{
+.hidden{
     display: none;
 }
 

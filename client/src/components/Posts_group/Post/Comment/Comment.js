@@ -2,15 +2,17 @@ import './Comment.css'
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const Comment = () => {
+const Comment = ({ comment, users }) => {
+    const commentUser = users?.find(user => user._id === comment.commentor)
+
     return (
         <div className='Comment flex'>
             <div className="flex">
-                <h5>Bala logesh</h5>
+                <h5>{ commentUser?.username }</h5>
                 <h5><EditIcon /></h5>
                 <h5><DeleteIcon /></h5>
             </div>
-            <p>Lorem ipsum dolor sit amet cons ectetur adipisicing elit</p>
+            <p>{ comment.body }</p>
         </div>
     )
 }

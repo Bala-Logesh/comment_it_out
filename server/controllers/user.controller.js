@@ -72,24 +72,23 @@ export const followUser = asyncHandler(async (req, res, next) => {
   const { id: _id } = req.params
   const { followId } = req.body
 
-  const user = await User.findById(_id)
+  const user = await User.findById(followId)
   
   if (!user)
     return next(new ErrorResponse("User not found", 404))
 
-  const hasFollowedUser = user.following.includes(followId)
+  const hasFollowedUser = user.following.includes(_id)
   if (hasFollowedUser) {
-    user.following = user.following.filter(user => String(user) !== followId)
+    user.following = user.following.filter(user => String(user) !== _id)
     status = 'Unfollowed the user'
   } else {
-    user.following.push(followId)
+    user.following.push(_id)
     status = 'Started following the user'
   }
 
-  const newUser = await User.findOneAndUpdate({ _id }, { following: user.following }, { new: true })
-    
+  const newUser = await User.findOneAndUpdate({ _id: followId }, { following: user.following }, { new: true })
   res.data = {
-    info: status
+    user: newUser
   }
 
   next()

@@ -1,8 +1,13 @@
 import { AUTH_LOGIN, AUTH_REGISTER, LOGOUT_USER, AUTH_TOKEN_LOGIN, AUTH_FORGOT_EMAIL, AUTH_FORGOT_OTP, AUTH_FORGOT_PWD } from "./authTypes";
-import { loginError, registerError, setLoading, forgotPwdError } from '../'
+import { loginError, registerError, setLoading, forgotPwdError, getUsers, getPosts } from '../'
 import { push } from 'connected-react-router'
 import * as API from '../../api'
 import actionHelper from "../utils/actionHelper";
+
+const after_fn = (dispatch) => {
+    dispatch(getUsers())
+    dispatch(getPosts())
+}
 
 /////////////////////////////////////////////////////////////////////////// Login an existing user from token
 export const loginUsingToken = () => async (dispatch) => {
@@ -15,7 +20,7 @@ export const loginUsingToken = () => async (dispatch) => {
     } else {
         const { data } = await API.auth(token)
         
-        actionHelper(dispatch, data, AUTH_TOKEN_LOGIN, loginError, 'home')
+        actionHelper(dispatch, data, AUTH_TOKEN_LOGIN, loginError, 'home', after_fn)
     }
 }
 

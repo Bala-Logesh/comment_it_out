@@ -1,18 +1,24 @@
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { followUser } from '../../../redux';
 import LaunchIcon from '@material-ui/icons/Launch';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import PersonAddDisabledIcon from '@material-ui/icons/PersonAddDisabled';
-import avatar from '../../../images/avatar.jpg'
 import './IndUser.css'
 
-const IndUser = () => {
-    const liked = true
+const IndUser = ({ induser, auth }) => {
+    const dispatch = useDispatch()
+    
+    const followed = induser?.following.find(user => user === auth.user._id)
+    
     return (
         <div className='IndUser flex'>
-            <h3 className='avatar flex'><img src={ avatar } alt='Avatar' /></h3>
-            <h4 className='username'>BalaLogeshsadfsdfadfsfBalaLogeshsadfsdfadfsf</h4>
-            <h4 className='icons flex'><Link to='/suggested/123'><LaunchIcon /></Link></h4>
-            { liked ? <h4 className='icons flex danger'><PersonAddDisabledIcon /></h4> : <h4 className='icons flex'><PersonAddIcon /></h4> }
+            {
+                induser && <h3 className='avatar flex'>{(induser.profilePic !== '') ? <img src={induser.profilePic} alt='Avatar' /> : induser.displayName} </h3>
+            }
+            <h4 className='username'>{ induser?.username }</h4>
+            <h4 className='icons flex'><Link to={`/suggested/${induser._id}`}><LaunchIcon /></Link></h4>
+            <h4 className={followed ? 'icons flex danger' : 'icons flex'} onClick={() => dispatch(followUser(auth.user._id, induser._id))}>{followed ? <PersonAddDisabledIcon /> : <PersonAddIcon /> }</h4>
         </div>
     )
 }

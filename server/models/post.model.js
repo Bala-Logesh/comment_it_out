@@ -26,6 +26,9 @@ const postSchema = new mongoose.Schema({
   tags: {
     type: [String],
   },
+  image: {
+    type: String,
+  },
   comments: {
     type: [
       {

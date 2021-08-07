@@ -16,13 +16,13 @@ const userReducer = (state = initialState, action) => {
     
     case GET_USER:
     case EDIT_USER:
+    case FOLLOW_USER:
       return {
         ...state,
         user: action.payload.user
       }
     
     case DELETE_USER:
-    case FOLLOW_USER:
       return {
         ...state,
         info: action.payload.info
