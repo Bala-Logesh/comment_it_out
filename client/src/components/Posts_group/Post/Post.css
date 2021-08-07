@@ -1,5 +1,5 @@
 .Post{
-    width: 100%;
+    width: 500px;
     background-color: var(--clr-bg-secondary);
     border-radius: 10px;
     margin-bottom: 20px;
@@ -69,6 +69,7 @@
 
 .Post__main > p{
     padding: 14px;
+    width: 100%;
 }
 
 .Post__main > p:last-child{

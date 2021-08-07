@@ -7,7 +7,6 @@ import ErrorResponse from '../utils/errorResponse.js'
 export const genOTP = asyncHandler( async (req, res, next) => {
   const { email } = req.params
 
-  console.log(email);
   const user = await User.findOne({ email: email })
 
   if (!user)

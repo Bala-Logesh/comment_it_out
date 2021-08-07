@@ -41,18 +41,20 @@ import Search from './components/Posts_group/Search/Search'
 
 import Page404 from './components/ErrorPages/Page404'
 import Page500 from './components/ErrorPages/Page500'
-import Loading from './components/Loading/Loading'
+// import Loading from './components/Loading/Loading'
 
 const App = () => {
   const dispatch = useDispatch()
   
   useEffect(() => {
-    dispatch(loginUsingToken())
+    if (localStorage.getItem('token')) {
+      dispatch(loginUsingToken())
+    }
   }, [dispatch])
 
   return (
     <>
-      <Loading />
+      {/* <Loading /> */}
       <Popup />
       <PopupUser />
       <PopupPost />
