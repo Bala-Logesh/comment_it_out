@@ -1,20 +1,25 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { editUser } from '../../redux'
 import ImageIcon from '@material-ui/icons/Image';
 import FileBase from 'react-file-base64'
 import './Form.css'
 
 const EditUser = () => {
+    const dispatch = useDispatch()
     const auth = useSelector(state => state.auth)
-    const { editUser } = useSelector(state => state.err)
+    const { user: userErr } = useSelector(state => state.err)
 
-    const [error, setError] = useState(editUser)
-    const [user, setUser] = useState(auth.user)
-
-    useEffect(() => {
-        setError(editUser)
-    }, [editUser])
+    const [error, setError] = useState(userErr)
+    const [user, setUser] = useState({
+        username: auth.user.username,
+        email: auth.user.email,
+        password: '',
+        confirmPassword: '',
+        displayName: auth.user.displayName,
+        profilePic: auth.user.profilePic || ''
+    })
 
     const handleInput = e => {
         setUser({
@@ -26,14 +31,30 @@ const EditUser = () => {
     const handleSubmit = e => {
         e.preventDefault()
 
+        if (user.username === '') {
+            return setError('Username cannot be empty')
+        }
+        if (user.displayName === '') {
+            return setError('Display Name cannot be empty')
+        }
         if (user.displayName.length > 2) {
             return setError('Display Name cannot be more than 2 characters long')
+        }
+        if (user.email === '') {
+            return setError('Email cannot be empty')
         }
         if (user.password && user.password !== user.confirmPassword) {
             return setError('Passwords do not match')
         }
 
-        console.log(user);
+        const newUser = {
+            ...user
+        }
+
+        newUser.displayName = newUser.displayName.toUpperCase()
+        newUser.password = auth.user.password
+
+        dispatch(editUser(auth.user._id, newUser))
     }
 
     return (
@@ -51,7 +72,7 @@ const EditUser = () => {
                         <FileBase
                             type="file"
                             multiple={false}
-                            onDone={(file) => { setUser({ ...user, selectedFile: file.base64 }); alert(`File uploaded successfully - ${ file.name }`) }}
+                            onDone={(file) => { setUser({ ...user, profilePic: file.base64 }); alert(`File uploaded successfully - ${ file.name }`) }}
                         />
                         <p>Upload a different Profile Picture</p>
                         <ImageIcon />

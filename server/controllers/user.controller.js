@@ -1,4 +1,5 @@
 import User from '../models/user.model.js'
+import Post from '../models/post.model.js'
 import bcrypt from 'bcryptjs'
 import asyncHandler from '../middlewares/asyncHandler.js'
 import ErrorResponse from '../utils/errorResponse.js'
@@ -36,13 +37,13 @@ export const updateUser = asyncHandler( async (req, res, next) => {
   if (!user)
     return next(new ErrorResponse("User not found", 404))
 
-  if (req.body.password) {
+  if (req.body.user.password) {
     const salt = await bcrypt.genSalt(10)
-    const hashedPwd = await bcrypt.hash(req.body.password, salt)
-    req.body.password = hashedPwd
+    const hashedPwd = await bcrypt.hash(req.body.user.password, salt)
+    req.body.user.password = hashedPwd
   }
 
-  const newUser = await User.findOneAndUpdate({ _id }, req.body, { new: true })
+  const newUser = await User.findOneAndUpdate({ _id }, req.body.user, { new: true })
     
   res.data = {
     user: newUser
@@ -59,6 +60,26 @@ export const deleteUser = asyncHandler( async (req, res, next) => {
     return next(new ErrorResponse("User not found", 404))
 
   await User.findOneAndDelete({ _id })
+
+  const users = await User.find()
+
+  users.forEach(async (user) => {
+    user.following = user.following.filter(follower => String(follower) !== _id)
+
+    const userr = await User.findOneAndUpdate({ _id: user._id }, user, { new: true })
+    console.log(userr.following);
+  })
+
+  await Post.deleteMany({ user: _id })
+
+  const posts = await Post.find()
+
+  posts.forEach(async (post) => {
+    post.likes = post.likes.filter(like => String(like) !== _id)
+    post.comments = post.comments.filter(comment => String(comment.commentor) !== _id)
+
+    await Post.findOneAndUpdate({ _id: post._id }, post, { new: true })
+  })
     
   res.data = {
     info: 'User deleted'

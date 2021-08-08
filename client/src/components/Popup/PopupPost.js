@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { deletePost, delPostModal } from '../../redux'
 import './Popup.css'
 
@@ -7,7 +7,6 @@ const PopupPost = () => {
     const { post, id } = useSelector(state => state.misc)
 
     const dispatch = useDispatch()
-    const history = useHistory()
     
     const closeModal = (e) => {
         if (e.target.id === 'popup') {
@@ -18,7 +17,6 @@ const PopupPost = () => {
     const delPostFn = () => {
         dispatch(deletePost(id))
         dispatch(delPostModal())
-        history.push('/home')
     }
 
     return (

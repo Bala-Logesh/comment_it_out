@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
-import { delUsertModal } from '../../redux'
+import { Link } from 'react-router-dom'
+import { deleteUser, delUsertModal } from '../../redux'
 import './Popup.css'
 
 const PopupUser = () => {
-    const { user } = useSelector(state => state.misc)
+    const { user, id } = useSelector(state => state.misc)
+
     const dispatch = useDispatch()
-    const history = useHistory()
     
     const closeModal = (e) => {
         if (e.target.id === 'popup') {
@@ -15,9 +15,8 @@ const PopupUser = () => {
     }
 
     const delUserFn = () => {
-        // dispatch(logoutUser())
+        dispatch(deleteUser(id))
         dispatch(delUsertModal())
-        history.push('/register')
     }
 
     return (

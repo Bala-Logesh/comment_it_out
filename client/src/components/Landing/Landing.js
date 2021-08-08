@@ -1,15 +1,6 @@
-import { useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
 import './Landing.css'
 
 const Landing = () => {
-    const history = useHistory()
-    const { user } = useSelector(state => state.auth)
-
-    if (user) {
-        history.push('/home')
-    }
-
     return (
         <div className='Landing flex'>
             <div className="Landing__main flex">

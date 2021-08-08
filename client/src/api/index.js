@@ -25,7 +25,7 @@ export const forgot3 = (email, password, _id) => API.post(`api/forgot/${email}`,
 // User routes
 export const getUsers = () => API.get(`api/user`)
 export const getUser = (id) => API.get(`api/user/${ id }`)
-export const editUser = (id, update) => API.patch(`api/user/${ id }`, update)
+export const editUser = (id, user) => API.patch(`api/user/${ id }`, { user })
 export const deleteUser = (id) => API.delete(`api/user/${ id }`)
 export const followUser = (id, followId) => API.patch(`api/user/${id}/following`, {followId})
 

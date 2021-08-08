@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import Posts from '../Posts/Posts'
 import SearchIcon from '@material-ui/icons/Search';
@@ -10,13 +10,19 @@ const Search = () => {
     const [tags, setTags] = useState('')
     const [found, setFound] = useState('')
     const [displayPosts, setDisplayPosts] = useState(null)
+    
+    let filteredPosts = []
 
-    const handleSearch = e => {
+    const searchFn = (e) => {
         e.preventDefault()
+        handleSearch(posts)
+    }
+
+    const handleSearch = (postsArr) => {
         setTags(tags.toLowerCase())
 
         if(tags !== '') {
-            const filteredPosts = posts?.filter(post => {
+            filteredPosts = postsArr?.filter(post => {
                 return (
                     (post.title.toLowerCase().search(tags) !== -1 ? true : false) || (post.tags.find(tag => tag.toLowerCase() === tags))
                 )
@@ -29,11 +35,16 @@ const Search = () => {
             setFound(true)
         }
     }
+
+    useEffect(() => {
+        handleSearch(posts)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [posts])
  
     return (
         <div className='Search flex'>
             <div className="Search__filter flex">
-                <form onSubmit={ handleSearch } autoComplete='off' className='form flex'>
+                <form onSubmit={ searchFn } autoComplete='off' className='form flex'>
                     <input type="text" name='tags' placeholder='Type something to search....' value={tags} onChange={e => setTags(e.target.value)} />
                     <button type="submit"><SearchIcon /></button>
                 </form>

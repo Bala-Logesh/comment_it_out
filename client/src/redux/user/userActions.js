@@ -1,10 +1,15 @@
 import { GET_USER, GET_USERS, EDIT_USER, DELETE_USER, FOLLOW_USER } from './userTypes'
-import { setLoading, UserError, logoutUser } from '../'
+import { setLoading, UserError, logoutUser, loginUsingToken } from '../'
 import * as API from '../../api'
 import actionHelper from "../utils/actionHelper";
 
 const after_fn_logout = (dispatch) => {
     dispatch(logoutUser())
+}
+
+const after_fn_edituser = (dispatch) => {
+    dispatch(getUsers())
+    dispatch(loginUsingToken())
 }
 
 const after_fn = (dispatch) => {
@@ -28,11 +33,11 @@ export const getUser = (id) => async (dispatch) => {
 }
 
 /////////////////////////////////////////////////////////////////////////// Update an existing user
-export const editUser = (id, update) => async (dispatch) => { 
+export const editUser = (id, user) => async (dispatch) => { 
     dispatch(setLoading())
-    const { data } = await API.editUser(id, update)
+    const { data } = await API.editUser(id, user)
         
-    actionHelper(dispatch, data, EDIT_USER, UserError, 'home')
+    actionHelper(dispatch, data, EDIT_USER, UserError, 'home', after_fn_edituser)
 }
 
 /////////////////////////////////////////////////////////////////////////// Delete an existing user

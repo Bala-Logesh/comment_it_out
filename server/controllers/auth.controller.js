@@ -26,7 +26,7 @@ export const registerUser = asyncHandler( async (req, res, next) => {
     const resUser = await newUser.save()
 
     const token = jwt.sign({ id: resUser._id }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
+      expiresIn: '12h',
     })
 
     resUser.password = ''
@@ -56,7 +56,7 @@ export const loginUser = asyncHandler( async (req, res, next) => {
     return next(new ErrorResponse("Invalid Credentials", 400))
 
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-    expiresIn: '1h',
+    expiresIn: '12h',
   })
 
   user.password = ''

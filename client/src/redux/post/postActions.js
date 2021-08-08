@@ -25,7 +25,6 @@ export const getPost = (id) => async (dispatch) => {
 
 /////////////////////////////////////////////////////////////////////////// Create a new post
 export const createPost = (post) => async (dispatch) => {
-    console.log(post);
     dispatch(setLoading())
     const { data } = await API.createPost(post)
         
@@ -35,7 +34,6 @@ export const createPost = (post) => async (dispatch) => {
 
 /////////////////////////////////////////////////////////////////////////// Edit an existing post
 export const editPost = (id, post) => async (dispatch) => {
-    console.log(post);
     dispatch(setLoading())
     const { data } = await API.editPost(id, post)
         
@@ -55,7 +53,7 @@ export const createComment = (id, comment) => async (dispatch) => {
     dispatch(setLoading())
     const { data } = await API.createComment(id, comment)
         
-    actionHelper(dispatch, data, CREATE_COMMENT, postError, 'home', after_fn)
+    actionHelper(dispatch, data, CREATE_COMMENT, postError, null, after_fn)
 }
 
 
@@ -64,7 +62,7 @@ export const editComment = (id, commentId, newComment) => async (dispatch) => {
     dispatch(setLoading())
     const { data } = await API.editComment(id, commentId, newComment)
         
-    actionHelper(dispatch, data, EDIT_COMMENT, postError, 'home', after_fn)
+    actionHelper(dispatch, data, EDIT_COMMENT, postError, null, after_fn)
 }
 
 /////////////////////////////////////////////////////////////////////////// Delete a comment on the post with ID
@@ -72,7 +70,7 @@ export const deleteComment = (id, commentId) => async (dispatch) => {
     dispatch(setLoading())
     const { data } = await API.deleteComment(id, commentId)
         
-    actionHelper(dispatch, data, DELETE_COMMENT, postError, 'home', after_fn)
+    actionHelper(dispatch, data, DELETE_COMMENT, postError, null, after_fn)
 }
 
 /////////////////////////////////////////////////////////////////////////// Like or Dislike the post with ID
@@ -80,5 +78,5 @@ export const likePost = (id, userId) => async (dispatch) => {
     dispatch(setLoading())
     const { data } = await API.likePost(id, userId)
         
-    actionHelper(dispatch, data, LIKE_POST, postError, 'home', after_fn)
+    actionHelper(dispatch, data, LIKE_POST, postError, null, after_fn)
 }

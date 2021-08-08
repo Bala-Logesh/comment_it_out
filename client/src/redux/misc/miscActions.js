@@ -13,7 +13,7 @@ export const delPostModal = (id = null) => dispatch => {
     })
 }
 
-export const delUsertModal = (id) => dispatch => {
+export const delUsertModal = (id = null) => dispatch => {
     dispatch({
         type: DEL_USER_MODAL,
         payload: id

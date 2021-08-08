@@ -125,6 +125,7 @@
     background-color: var(--clr-bg-secondary);
 }
 
+.form__buttons > .red,
 .form__buttons > a:last-child > button{
     color: var(--clr-text-primary);
     background-color: var(--clr-accent-red);

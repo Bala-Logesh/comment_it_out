@@ -54,8 +54,9 @@
     width: 100%;
 }
 
-.Popup__buttons > button{
+.Popup__buttons > a{
     border: 2px solid var(--clr-bg-tertiary);
+    border-radius: 10px;
 }
 
 .Popup__buttons > button:hover{
@@ -63,7 +64,7 @@
     background-color: var(--clr-bg-tertiary);
 }
 
-.Popup__buttons > a:last-child > button{
+.Popup__buttons > button{
     color: var(--clr-text-primary);
     background-color: var(--clr-accent-red);
 }

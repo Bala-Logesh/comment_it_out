@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom"
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { delUsertModal } from "../../redux"
 import avatar_default from '../../images/avatar_default.png'
 import './Form.css'
 
 const UserDetails = () => {
+    const dispatch = useDispatch()
     const { user } = useSelector(state => state.auth)
     
     return (
@@ -26,8 +28,8 @@ const UserDetails = () => {
                     </div>
                     <br />
                     <div className="form__buttons flex">
-                        <Link to='/123/settings'><button className='btn' type="submit">Edit Details</button></Link>
-                        <Link to='/home'><button className='btn'>Delete Account</button></Link>
+                        <Link to={ `/${ user._id }/settings` }><button className='btn' type="submit">Edit Details</button></Link>
+                        <Link to='#' onClick={() => dispatch(delUsertModal(user._id))}><button className='btn red'>Delete Account</button></Link>
                     </div>
                 </form>
             </div>
