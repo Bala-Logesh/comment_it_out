@@ -10,8 +10,8 @@ const CommentForm = ({ post, user, setEditCmnt, editCmnt = null }) => {
     const [comment, setComment] = useState('')
 
     useEffect(() => {
-        setComment(editCmnt?.body)
-    }, [editCmnt?.body])
+        editCmnt && setComment(editCmnt?.body)
+    }, [editCmnt, editCmnt?.body])
 
     const handleSubmit = e => {
         e.preventDefault()

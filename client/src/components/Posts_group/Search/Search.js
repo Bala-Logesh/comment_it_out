@@ -1,16 +1,33 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux';
 import Posts from '../Posts/Posts'
 import SearchIcon from '@material-ui/icons/Search';
 import './Search.css'
 
 const Search = () => {
+    const { posts } = useSelector(state => state.post)
+
     const [tags, setTags] = useState('')
+    const [found, setFound] = useState('')
+    const [displayPosts, setDisplayPosts] = useState(null)
 
     const handleSearch = e => {
         e.preventDefault()
-        console.log(tags);
+        setTags(tags.toLowerCase())
 
-        setTags('')
+        if(tags !== '') {
+            const filteredPosts = posts?.filter(post => {
+                return (
+                    (post.title.toLowerCase().search(tags) !== -1 ? true : false) || (post.tags.find(tag => tag.toLowerCase() === tags))
+                )
+            })
+
+            setDisplayPosts(filteredPosts)
+        }
+
+        if (displayPosts?.length !== 0) {
+            setFound(true)
+        }
     }
  
     return (
@@ -22,7 +39,9 @@ const Search = () => {
                 </form>
             </div>
             <div className='Search__results flex'>
-                <Posts />
+                { tags === '' ? <h2>Search for the post by Title or Tags</h2> : 
+                    (found ? <Posts filteredPosts = { displayPosts } onlyFiltered = { true } /> : <h2>No matching posts found</h2>)
+                } 
             </div>
         </div>
     )

@@ -50,6 +50,7 @@
 
 .Search__results.flex{
     flex-direction: column;
+    justify-content: flex-start;
 }
 
 /* Media Queries */
