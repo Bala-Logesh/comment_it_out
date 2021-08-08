@@ -13,3 +13,4 @@ A MERN stack application
 
 ## Progress
     29.07.2021 - Started the UI design
+    09.08.2021 - Finished the entire project
