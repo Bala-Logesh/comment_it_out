@@ -4,7 +4,7 @@ import ErrorResponse from '../utils/errorResponse.js'
 
 /////////////////////////////////////////////////////////////////////////// Get all the posts
 export const fetchAllPosts = asyncHandler ( async (req, res, next) => {
-  const posts = await Post.find()
+  const posts = await Post.find().sort({ 'createdAt': -1 })
 
   res.data = {
     posts
@@ -49,7 +49,7 @@ export const updatePost = asyncHandler( async (req, res, next) => {
   if (!post)
     return next(new ErrorResponse("Post not found", 404))
   
-  const newPost = await Post.findOneAndUpdate({ _id }, req.body, { new: true })
+  const newPost = await Post.findOneAndUpdate({ _id }, req.body.post, { new: true })
 
   res.data = {
     post: newPost
@@ -75,7 +75,7 @@ export const deletePost = asyncHandler( async (req, res, next) => {
 
 /////////////////////////////////////////////////////////////////////////// Creating a new comment
 export const createComment = asyncHandler( async (req, res, next) => {
-  const comment = req.body
+  const { comment } = req.body
   const { id: _id } = req.params
 
   const post = await Post.findById(_id)
@@ -83,7 +83,7 @@ export const createComment = asyncHandler( async (req, res, next) => {
   if (!post)
     return next(new ErrorResponse("Post not found", 404))
   
-  post.comments.push(comment)
+  post.comments.unshift(comment)
 
   const newPost = await Post.findOneAndUpdate({ _id }, { comments: post.comments }, { new: true })
 
@@ -96,8 +96,8 @@ export const createComment = asyncHandler( async (req, res, next) => {
 
 /////////////////////////////////////////////////////////////////////////// Update a comment on an existing post
 export const updateComment = asyncHandler( async (req, res, next) => {
-  const { commentId } = req.body
-  const { id: _id } = req.params
+  const { newComment } = req.body
+  const { id: _id, commentId } = req.params
 
   const post = await Post.findById(_id)
 
@@ -111,7 +111,7 @@ export const updateComment = asyncHandler( async (req, res, next) => {
   if (changeComment.length === 0)
     return next(new ErrorResponse("Comment not found", 404))
   
-  changeComment[0].body = req.body.comment
+  changeComment[0].body = newComment
   post.comments.map(comment => (comment._id === commentId) ? changeComment : comment)
 
   const newPost = await Post.findOneAndUpdate({ _id }, { comments: post.comments }, { new: true })
@@ -124,8 +124,7 @@ export const updateComment = asyncHandler( async (req, res, next) => {
 
 /////////////////////////////////////////////////////////////////////////// Deleting a new comment
 export const deleteComment = asyncHandler( async (req, res, next) => {
-  const { commentId } = req.body
-  const { id: _id } = req.params
+  const { id: _id, commentId } = req.params
 
   const post = await Post.findById(_id)
 

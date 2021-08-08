@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { likePost } from '../../../redux';
+import { delPostModal, likePost } from '../../../redux';
 import './Post.css'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
@@ -21,6 +21,7 @@ const Post = ({ post, users }) => {
 
     const liked = post.likes.find(like => like === user._id)
     const [openComments, setOpenComments] = useState(false)
+    const [editCmnt, setEditCmnt] = useState(null)
 
     return (
         <div className='Post flex'>
@@ -54,14 +55,14 @@ const Post = ({ post, users }) => {
                     {post.status === 'public' ? <VisibilityIcon /> : <VisibilityOffIcon />}
                 </div>
                 {(post.user === user._id) &&
-                    <div className="icons red">
+                    <div className="icons red" onClick={ () => dispatch(delPostModal(post._id)) }>
                         <DeleteIcon />
                     </div>
                 }
             </div>
             <div className={openComments ? 'Post__comment flex' : 'hidden'}>
-                { post?.comments.map(comment => <Comment key={ comment._id } comment={ comment } users={ users } />) }
-                <CommentForm />
+                {post?.comments.map(comment => <Comment key={comment._id} comment={comment} users={users} user={user} post={ post } setEditCmnt={setEditCmnt} />) }
+                <CommentForm post={post} user={user} editCmnt={editCmnt} setEditCmnt={setEditCmnt } />
             </div>
         </div>
     )

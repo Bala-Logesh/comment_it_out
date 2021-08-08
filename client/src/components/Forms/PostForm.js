@@ -1,15 +1,22 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { createPost } from "../../redux";
 import FileBase from 'react-file-base64'
 import ImageIcon from '@material-ui/icons/Image';
 import './Form.css'
 
 const PostForm = () => {
-    const error = null
+    const dispatch = useDispatch()
+    const { post: postErr } = useSelector(state => state.err)
+    const { user } = useSelector(state => state.auth)
+    
+    const [error, setError] = useState(postErr)
     const [post, setPost] = useState({
         title: '',
         subtitle: '',
         body: '',
+        tags: '',
         status: 'public',
         image: ''
     })
@@ -23,14 +30,24 @@ const PostForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(post);
-        setPost({
-            title: '',
-            subtitle: '',
-            body: '',
-            status: 'public',
-            image: ''
-        })
+        
+        if (post.title === '') {
+            return setError('Title cannot be empty')
+        }
+        if (post.subtitle === '') {
+            return setError('Subtitle cannot be empty')
+        }
+        if (post.body === '' && post.image === '') {
+            return setError('Enter a body or upload an image')
+        }
+
+        const newPost = {
+            ...post,
+            tags: post.tags.split(','),
+            user: user._id
+        }
+
+        dispatch(createPost(newPost))
     }
 
     return (
@@ -41,6 +58,7 @@ const PostForm = () => {
                     {error && <div className="error">{ error }</div> }
                     <input type="text" name='title' placeholder='Enter the title' value={post.title} onChange={handleInput} />
                     <input type="title" name='subtitle' placeholder='Enter the subtitle' value={post.subtitle} onChange={handleInput} />
+                    <input type="title" name='tags' placeholder='Enter the tags separated by commas' value={post.tags} onChange={handleInput} />
                     <textarea type="text" rows="6" name="body" placeholder='Enter the body' value={post.body} onChange={handleInput} />
                     <div className="form__radio flex">
                         <h4>Choose visibility</h4>

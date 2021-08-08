@@ -4,7 +4,8 @@ const initialState = {
   logout: false,
   user: false,
   post: false,
-  loading: false
+  loading: false,
+  id: null
 }
 
 const miscReducer = (state = initialState, action) => {
@@ -12,13 +13,15 @@ const miscReducer = (state = initialState, action) => {
     case DEL_USER_MODAL:
       return {
         ...state,
-        user: !state.user
+        user: !state.user,
+        id: action.payload
       }
     
     case DEL_POST_MODAL:
       return {
         ...state,
-        post: !state.post
+        post: !state.post,
+        id: action.payload
       }
     
     case LOGOUT_MODAL:

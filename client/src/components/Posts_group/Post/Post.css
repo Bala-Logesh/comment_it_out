@@ -29,9 +29,10 @@
 }
 
 .Post__header > .avatar > img{
-    object-fit: contain;
+    object-fit: cover;
     height: 40px;
     width: 40px;
+    border-radius: 50px;
 }
 
 .Post__header .Post__header-title{
@@ -78,9 +79,9 @@
     color: var(--clr-accent-blue);
 }
 
-.Post__main > div > img{
+.Post__main > img{
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
     margin: 0 auto;
 }
 

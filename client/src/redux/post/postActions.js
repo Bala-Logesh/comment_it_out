@@ -24,20 +24,22 @@ export const getPost = (id) => async (dispatch) => {
 }
 
 /////////////////////////////////////////////////////////////////////////// Create a new post
-export const createPost = (id, post) => async (dispatch) => { 
+export const createPost = (post) => async (dispatch) => {
+    console.log(post);
     dispatch(setLoading())
-    const { data } = await API.createPost(id, post)
+    const { data } = await API.createPost(post)
         
-    actionHelper(dispatch, data, CREATE_POST, postError, 'home')
+    actionHelper(dispatch, data, CREATE_POST, postError, 'home', after_fn)
 }
 
 
 /////////////////////////////////////////////////////////////////////////// Edit an existing post
-export const editPost = (id, update) => async (dispatch) => { 
+export const editPost = (id, post) => async (dispatch) => {
+    console.log(post);
     dispatch(setLoading())
-    const { data } = await API.editPost(id, update)
+    const { data } = await API.editPost(id, post)
         
-    actionHelper(dispatch, data, EDIT_POST, postError, 'home')
+    actionHelper(dispatch, data, EDIT_POST, postError, 'home', after_fn)
 }
 
 /////////////////////////////////////////////////////////////////////////// Delete an existing post
@@ -45,7 +47,7 @@ export const deletePost = (id) => async (dispatch) => {
     dispatch(setLoading())
     const { data } = await API.deletePost(id)
         
-    actionHelper(dispatch, data, DELETE_POST, postError, '')
+    actionHelper(dispatch, data, DELETE_POST, postError, '', after_fn)
 }
 
 /////////////////////////////////////////////////////////////////////////// Create a comment on the post
@@ -53,24 +55,24 @@ export const createComment = (id, comment) => async (dispatch) => {
     dispatch(setLoading())
     const { data } = await API.createComment(id, comment)
         
-    actionHelper(dispatch, data, CREATE_COMMENT, postError, 'home')
+    actionHelper(dispatch, data, CREATE_COMMENT, postError, 'home', after_fn)
 }
 
 
 /////////////////////////////////////////////////////////////////////////// Update a comment on the post with ID
-export const editComment = (id, update) => async (dispatch) => { 
+export const editComment = (id, commentId, newComment) => async (dispatch) => {
     dispatch(setLoading())
-    const { data } = await API.editComment(id, update)
+    const { data } = await API.editComment(id, commentId, newComment)
         
-    actionHelper(dispatch, data, EDIT_COMMENT, postError, 'home')
+    actionHelper(dispatch, data, EDIT_COMMENT, postError, 'home', after_fn)
 }
 
 /////////////////////////////////////////////////////////////////////////// Delete a comment on the post with ID
-export const deleteComment = (id) => async (dispatch) => { 
+export const deleteComment = (id, commentId) => async (dispatch) => {
     dispatch(setLoading())
-    const { data } = await API.deleteComment(id)
+    const { data } = await API.deleteComment(id, commentId)
         
-    actionHelper(dispatch, data, DELETE_COMMENT, postError, 'home')
+    actionHelper(dispatch, data, DELETE_COMMENT, postError, 'home', after_fn)
 }
 
 /////////////////////////////////////////////////////////////////////////// Like or Dislike the post with ID

@@ -19,7 +19,7 @@ const Posts = ({ filteredPosts = [], onlyFiltered = false }) => {
             {
                 (dispPosts?.length !== 0) ? (
                     dispPosts?.map(post => <Post key={ post._id } post={ post } users={ users } />)
-                ): (
+                ) : (
                     <h1>No Posts to display</h1>
                 )
             }

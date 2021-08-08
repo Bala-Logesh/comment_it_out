@@ -44,15 +44,15 @@ router.delete('/:id', auth, deletePost)
 // @access Protected
 router.post('/:id/comment', auth, createComment)
 
-// @route PATCH api/post/:id/comment
+// @route PATCH api/post/:id/comment/:commentId
 // @description Update a comment on the post with ID
 // @access Protected
-router.patch('/:id/comment', auth, updateComment)
+router.patch('/:id/comment/:commentId', auth, updateComment)
 
-// @route DELETE api/post/:id/comment
+// @route DELETE api/post/:id/comment/:commentId
 // @description Delete a comment on the post with ID
 // @access Protected
-router.delete('/:id/comment', auth, deleteComment)
+router.delete('/:id/comment/:commentId', auth, deleteComment)
 
 // @route PATCH api/post/:id/like
 // @description Like or Dislike the post with ID

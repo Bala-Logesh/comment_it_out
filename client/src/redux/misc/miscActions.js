@@ -6,15 +6,17 @@ export const logoutModal = () => dispatch => {
     })
 }
 
-export const delPostModal = () => dispatch => {
+export const delPostModal = (id = null) => dispatch => {
     dispatch({
-        type: DEL_POST_MODAL
+        type: DEL_POST_MODAL,
+        payload: id
     })
 }
 
-export const delUsertModal = () => dispatch => {
+export const delUsertModal = (id) => dispatch => {
     dispatch({
-        type: DEL_USER_MODAL
+        type: DEL_USER_MODAL,
+        payload: id
     })
 }
 

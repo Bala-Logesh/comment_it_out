@@ -24,8 +24,8 @@
     font-size: 1rem;
 }
 
-.Comment > .flex > h5:nth-child(2),
-.Comment > .flex > h5:last-child{
+.Comment > .flex > .edit,
+.Comment > .flex > .red{
     padding: 6px 8px;
     border-radius: 10px;
     color: var(--clr-text-primary);
@@ -34,7 +34,7 @@
     cursor: pointer;
 }
 
-.Comment > .flex > h5:last-child{
+.Comment > .flex > .red{
     background-color: var(--clr-accent-red);
 }
 
@@ -43,7 +43,7 @@
     font-size: 1rem;
 }
 
-.Comment > .flex > h5:nth-child(2):hover{
+.Comment > .flex > .edit:hover{
     color: var(--clr-accent-blue);
 }
 

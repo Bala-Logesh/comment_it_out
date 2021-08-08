@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux"
 import { registerUser } from "../../redux";
@@ -19,10 +19,6 @@ const Register = () => {
         displayName: '',
         profilePic: ''
     })
-
-    useEffect(() => {
-        setError(register)
-    }, [register])
 
     const handleInput = e => {
         setUser({

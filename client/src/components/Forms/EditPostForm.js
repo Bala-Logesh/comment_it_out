@@ -1,17 +1,28 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
+import { useSelector, useDispatch } from 'react-redux'
+import { editPost } from "../../redux"
 import FileBase from 'react-file-base64'
 import ImageIcon from '@material-ui/icons/Image';
 import './Form.css'
 
 const EditPostForm = () => {
-    const error = null
+    const { posts } = useSelector(state => state.post)
+    const { post: postErr } = useSelector(state => state.err)
+    const dispatch = useDispatch()
+
+    const { id } = useParams()
+
+    const filteredPost = posts?.find(post => post._id === id)
+
+    const [error, setError] = useState(postErr)
     const [post, setPost] = useState({
-        title: 'Post 1',
-        subtitle: 'Post 1 Subtitle',
-        body: 'Post 1 Body',
-        status: 'public',
-        image: ''
+        title: filteredPost.title,
+        subtitle: filteredPost.subtitle,
+        tags: filteredPost.tags.join(','),
+        body: filteredPost.body,
+        status: filteredPost.status,
+        image: filteredPost.image || ''
     })
 
     const handleInput = e => {
@@ -23,7 +34,23 @@ const EditPostForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(post);
+
+        if (post.title === '') {
+            return setError('Title cannot be empty')
+        }
+        if (post.subtitle === '') {
+            return setError('Subtitle cannot be empty')
+        }
+        if (post.body === '' && post.image === '') {
+            return setError('Enter a body or upload an image')
+        }
+
+        const newPost = {
+            ...post,
+            tags: post.tags.split(',')
+        }
+
+        dispatch(editPost(id, newPost))
     }
 
     return (
@@ -34,6 +61,7 @@ const EditPostForm = () => {
                     {error && <div className="error">{ error }</div> }
                     <input type="text" name='title' placeholder='Enter the title' value={post.title} onChange={handleInput} />
                     <input type="title" name='subtitle' placeholder='Enter the subtitle' value={post.subtitle} onChange={handleInput} />
+                    <input type="title" name='tags' placeholder='Enter the tags separated by commas' value={post.tags} onChange={handleInput} />
                     <textarea type="text" rows="6" name="body" placeholder='Enter the body' value={post.body} onChange={handleInput} />
                     <div className="form__radio flex">
                         <h4>Choose visibility</h4>
