@@ -48,11 +48,11 @@
     }
 
     .UserPosts__filter{
-        padding: 14px 0;
+        padding: 0 0 14px;
     }
 
     .UserPosts__posts{
-        max-height: 74%;
+        min-height: 74%;
     }
 }
 
