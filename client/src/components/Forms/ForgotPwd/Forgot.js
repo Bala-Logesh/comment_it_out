@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { forgotPwdEmail } from '../../../redux'
 import '../Form.css'
 
@@ -27,6 +28,11 @@ const Forgot = () => {
                     <input type="email" name='email' placeholder='Enter the email' value={ email } onChange={ e => setEmail(e.target.value) } />
                     <button className='btn' type="submit">Get an OTP</button>
                 </form>
+                <div className="form__links">
+                    <h3><Link to='/login'><span>Click here</span></Link> to login as an existing user</h3>
+                    <br />
+                    <h3><Link to='/signup'><span>Click here</span></Link> to register as a new user</h3>
+                </div>
             </div>
         </div>
     )
