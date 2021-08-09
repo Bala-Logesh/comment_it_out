@@ -1,3 +1,4 @@
 server/node_modules
+server/.env
 client/node_modules
-comment_it_out.zip
+.DS_Store
