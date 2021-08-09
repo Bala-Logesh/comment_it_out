@@ -1,5 +1,5 @@
 .Post{
-    width: 500px;
+    width: 100%;
     background-color: var(--clr-bg-secondary);
     border-radius: 10px;
     margin-bottom: 20px;
