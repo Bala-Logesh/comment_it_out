@@ -8,7 +8,6 @@ import post from './api/routes/post.js'
 import responseHandler from "./middlewares/responseHandler.js"
 import errorHandler from "./middlewares/errorHandler.js"
 import connectToDB from "./utils/db.js"
-import path from 'path'
 
 dotenv.config()
 
@@ -23,8 +22,6 @@ app.use(cors())
 app.use(express.json({ limit: "30mb", extended: true }))
 app.use(express.urlencoded({ extended: false }))
 
-app.use(express.static(path.join(__dirname, "client", "build")))
-
 // Routes
 app.get('/', (req, res) => {
     res.send('Hello welcome to Comment It Out')
@@ -33,10 +30,6 @@ app.use('/api/user', user)
 app.use('/api/auth', auth)
 app.use('/api/forgot', forgot)
 app.use('/api/post', post)
-
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
 
 // Response Middleware
 app.use(responseHandler)
